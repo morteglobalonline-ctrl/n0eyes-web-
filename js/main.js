@@ -64,9 +64,12 @@
     let i = nearest(Math.round(p * (N - 1)));
     if (i < 0 || (i === drawn && !force)) return;
     const im = frames[i], cw = canvas.width, ch = canvas.height;
-    const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+    // yatayda cover; dikey ekranda (telefon) kareyi fazla kırpma: genişliğe sığdır, en az ekranın %58'i kadar yüksek
+    const portrait = ch > cw;
+    const s = portrait ? Math.max(cw / im.naturalWidth, (0.58 * ch) / im.naturalHeight) : Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const w = im.naturalWidth * s, h = im.naturalHeight * s;
-    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+    if (portrait) { ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cw, ch); }
+    ctx.drawImage(im, (cw - w) / 2, portrait ? ch * 0.44 - h / 2 : (ch - h) / 2, w, h);
     drawn = i;
   };
   resize();
@@ -156,7 +159,7 @@
   const map = $('#map'), mapCount = $('#mapCamCount');
   const mio = new IntersectionObserver((es) => es.forEach(e => {
     if (!e.isIntersecting) return;
-    const n = $$('.cam', map).length; let i = 0;
+    const n = $$('.cam', map).filter(c => c.getClientRects().length).length; let i = 0;
     const tick = () => { i++; mapCount.textContent = i; if (i < n) setTimeout(tick, 200); };
     setTimeout(tick, 300); mio.unobserve(map);
   }), { threshold: 0.3 });
@@ -207,7 +210,7 @@
   if (new URLSearchParams(location.search).has('flat')) {
     $$('.reveal, .feature, #pipeline, #map').forEach(el => el.classList.add('is-in'));
     $$('[data-count]').forEach(el => { el.textContent = el.dataset.count + sufOf(el); el.dataset.done = '1'; });
-    mapCount.textContent = $$('.cam', map).length;
+    mapCount.textContent = $$('.cam', map).filter(c => c.getClientRects().length).length;
     $('.hero').style.minHeight = '900px'; // tam sayfa ekran görüntüsünde 100vh şişmesin
     const only = new URLSearchParams(location.search).get('only'); // &only=dunya -> yalnız o bölüm
     if (only) $$('main > *, .marquee').forEach(el => { if (el.id !== only) el.style.display = 'none'; });

@@ -230,12 +230,14 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .section--map{background:radial-gradient(ellipse at 50% 40%,rgba(0,232,122,.06),transparent 60%)}
 .map{background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:24px;overflow:hidden}
 .map__svg{width:100%;height:auto;font-family:var(--font-h)}
+.map__svg--m{display:none}
+.map__hubLabel--c{text-anchor:middle}
 .map__blocks rect{fill:rgba(255,255,255,.025);stroke:var(--line2);stroke-width:1;stroke-dasharray:4 4}
 .map__blocks text{fill:var(--gray);font-size:11px;letter-spacing:.2em;font-weight:600}
 .map__excluded rect{fill:rgba(255,106,61,.05);stroke:rgba(255,106,61,.4);stroke-dasharray:3 3}
 .map__excluded text{fill:rgba(255,106,61,.8);font-size:10px;letter-spacing:.1em}
 .map__hubRing{fill:var(--bg);stroke:var(--green);stroke-width:2}
-.map__hubPulse{fill:none;stroke:var(--green);stroke-width:2;animation:hubPulse 2.4s ease-out infinite;transform-origin:center}
+.map__hubPulse{fill:none;stroke:var(--green);stroke-width:2;animation:hubPulse 2.4s ease-out infinite;transform-origin:center;transform-box:fill-box}
 @keyframes hubPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.6);opacity:0}}
 .map__hubLabel{fill:var(--white);font-size:12px;text-anchor:start;letter-spacing:.08em;font-weight:600}
 .map__links path{fill:none;stroke:var(--green);stroke-width:1.5;opacity:.55;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.6s var(--ease)}
@@ -341,7 +343,22 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .live__kpis,.live__cam{display:none}.live__top{left:52px;right:52px}
   .pipeline{gap:44px}.pipeline__num{top:-28px}
   .live__hud .hud__c--bl,.live__hud .hud__c--br{display:none}
-  .map{padding:12px}.map__svg{min-width:720px}.map{overflow-x:auto}
+  .map{padding:12px;overflow:visible}.map__svg{display:none}.map__svg--m{display:block}
+  .map__blocks text{font-size:13px}.cam text{font-size:15px}.map__hubLabel{font-size:14px}.map__excluded text{font-size:12px}
+  .map__stats{grid-template-columns:1fr 1fr;gap:10px}.map__stats b{font-size:26px}.map__stats span{font-size:12px}
+  /* hero: mobilde 100vh boşluk bırakma */
+  .hero{min-height:auto;display:block}.hero__content{padding-top:168px;padding-bottom:24px}.hero__tagline{position:static;margin:0 0 32px var(--pad)}
+  .hud__c--bl,.hud__c--br{display:none}
+  /* canlı analiz sahnesi ve istatistikler */
+  .live__stage{aspect-ratio:16/9}.stats{grid-template-columns:1fr 1fr;gap:18px 14px}.stat b{font-size:34px}.stat span{font-size:13px}
+  /* dünya kareleri: alt yazı iki satıra kırılabilsin */
+  .cam-tile figcaption{flex-wrap:wrap;gap:4px 10px;padding:10px 12px;font-size:10px;letter-spacing:.08em}
+  .cam-tile__cnt{margin-left:auto;font-size:11px}.cam-tile__cnt i{font-size:13px}
+  /* intro: küçük ekran */
+  .intro__brand .brand__word{font-size:22px}.intro__brand .brand__mark{width:28px;height:28px}
+  .intro__caption{font-size:clamp(17px,5vw,22px);bottom:20vh}
+  .intro__scroll{bottom:28px}.intro__skip{padding:8px 12px;font-size:12px}
+  .section{padding:64px 0}.section__head{margin-bottom:32px}
   .footer__inner{grid-template-columns:1fr}
   .footer__bottom{flex-direction:column;gap:8px}
 }

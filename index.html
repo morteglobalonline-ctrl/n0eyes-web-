@@ -373,6 +373,52 @@
         </g>
       </svg>
 
+      <!-- Mobil (dikey) plan: ≤720px'de gösterilir, masaüstü SVG gizlenir -->
+      <svg viewBox="0 0 640 1060" class="map__svg map__svg--m" aria-hidden="true">
+        <rect width="640" height="1060" fill="url(#gridp)"/>
+        <g class="map__blocks">
+          <rect x="40"  y="40"  width="260" height="170" rx="6"/><text x="56" y="66">OTOPARK</text>
+          <rect x="340" y="40"  width="260" height="170" rx="6"/><text x="356" y="66">ÜRETİM HATTI</text>
+          <rect x="40"  y="250" width="260" height="190" rx="6"/><text x="56" y="276">DEPO</text>
+          <rect x="340" y="250" width="260" height="190" rx="6"/><text x="356" y="276">OFİS GİRİŞİ</text>
+          <g class="map__excluded"><rect x="470" y="350" width="118" height="70" rx="6"/><text x="480" y="374">DİNLENME</text><text x="480" y="392">kapsam dışı</text></g>
+          <rect x="40"  y="640" width="260" height="190" rx="6"/><text x="56" y="666">DIŞ AVLU</text>
+          <rect x="340" y="640" width="260" height="190" rx="6"/><text x="356" y="666">MAL KABUL</text>
+          <rect x="40"  y="870" width="560" height="160" rx="6"/><text x="56" y="896">SEVKİYAT</text>
+        </g>
+        <g class="map__hub" transform="translate(320,540)">
+          <circle r="90" fill="url(#hubGlow)"/>
+          <circle r="34" class="map__hubRing"/>
+          <circle r="34" class="map__hubPulse"/>
+          <g transform="translate(-16,-16) scale(.32)" class="map__hubIcon">
+            <path d="M14 30V14h16M70 14h16v16M86 70v16H70M30 86H14V70" fill="none" stroke="#00E87A" stroke-width="6" stroke-linecap="round"/>
+            <rect x="33" y="18" width="34" height="64" rx="17" fill="none" stroke="#00E87A" stroke-width="8"/>
+            <circle cx="50" cy="50" r="9" fill="none" stroke="#00E87A" stroke-width="5"/><circle cx="50" cy="50" r="3.5" fill="#00E87A"/>
+          </g>
+          <text x="0" y="62" class="map__hubLabel map__hubLabel--c">n0eyes bilgisayarı</text>
+        </g>
+        <g class="map__links">
+          <path d="M110 110 C 180 260, 240 420, 320 540"/>
+          <path d="M530 110 C 460 260, 400 420, 320 540"/>
+          <path d="M110 330 C 190 400, 250 470, 320 540"/>
+          <path d="M530 330 C 450 400, 390 470, 320 540"/>
+          <path d="M110 760 C 190 690, 250 610, 320 540"/>
+          <path d="M530 760 C 450 690, 390 610, 320 540"/>
+          <path d="M240 400 C 270 450, 300 500, 320 540"/>
+          <path d="M320 960 C 330 820, 330 680, 320 540"/>
+        </g>
+        <g class="map__cams">
+          <g class="cam" transform="translate(110,110)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="16" y="5">CAM 5 · Otopark</text></g>
+          <g class="cam" transform="translate(530,110)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="-16" y="5" text-anchor="end">CAM 7 · Hat başı</text></g>
+          <g class="cam" transform="translate(110,330)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="16" y="5">CAM 3 · Depo içi</text></g>
+          <g class="cam" transform="translate(530,330)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="-16" y="5" text-anchor="end">CAM 8 · Ofis girişi</text></g>
+          <g class="cam" transform="translate(240,400)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="-16" y="5" text-anchor="end">CAM 6 · Raf koridoru</text></g>
+          <g class="cam" transform="translate(110,760)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="16" y="5">CAM 1 · Avlu</text></g>
+          <g class="cam" transform="translate(530,760)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="-16" y="5" text-anchor="end">CAM 2 · Rampa</text></g>
+          <g class="cam" transform="translate(320,960)"><circle r="14" class="cam__halo"/><circle r="5"/><text x="16" y="5">CAM 4 · Yükleme</text></g>
+        </g>
+      </svg>
+
       <div class="map__stats">
         <div><b id="mapCamCount">0</b><span>kamera bağlı</span></div>
         <div><b>1</b><span>n0eyes bilgisayarı</span></div>
