@@ -122,6 +122,7 @@
   addEventListener('keydown', (e) => { if (!opened && (e.key === 'Escape' || e.key === 'Enter')) openSite(); });
   if (qs.has('flat') || qs.has('site')) {
     opened = true; document.body.classList.add('is-open'); intro.classList.add('is-gone');
+    if (qs.get('sy')) addEventListener('load', () => scrollTo(0, +qs.get('sy'))); // debug: ?sy=1200 -> o konuma kaydır
   } else {
     requestAnimationFrame(introLoop);
   }
