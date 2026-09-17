@@ -328,8 +328,8 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .footer__inner{grid-template-columns:1fr 1fr}
 }
 @media (max-width:720px){
-  .nav__links{position:fixed;inset:0;background:rgba(10,10,10,.96);flex-direction:column;justify-content:center;font-size:22px;gap:26px;transform:translateY(-100%);visibility:hidden;transition:transform .4s var(--ease),visibility 0s .4s}
-  .nav.is-open .nav__links{transform:none;visibility:visible;transition:transform .4s var(--ease)}
+  .nav__links{position:fixed;inset:0;background:rgba(10,10,10,.96);flex-direction:column;justify-content:center;font-size:22px;gap:26px;transform:translateY(-100%);visibility:hidden;opacity:0;pointer-events:none;transition:transform .4s var(--ease),opacity .3s,visibility 0s .4s}
+  .nav.is-open .nav__links{transform:none;visibility:visible;opacity:1;pointer-events:auto;transition:transform .4s var(--ease),opacity .3s}
   .nav__burger{display:flex;position:relative;z-index:2}
   .nav.is-open .nav__burger span:first-child{transform:translateY(4px) rotate(45deg)}
   .nav.is-open .nav__burger span:last-child{transform:translateY(-4px) rotate(-45deg)}
