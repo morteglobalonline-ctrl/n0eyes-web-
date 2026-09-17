@@ -1,6 +1,14 @@
-# n0eyes — web sitesi (v0.1 taban)
+# n0eyes — web sitesi
 
-Saf HTML/CSS/JS, framework yok. Türkçe, tek sayfa.
+Saf HTML/CSS/JS, framework yok. Tek sayfa, TR/EN.
+
+**Canlı:** https://morteglobalonline-ctrl.github.io/n0eyes-web-/
+**Kod:** https://github.com/morteglobalonline-ctrl/n0eyes-web- (GitHub Pages, `main` dalı kök dizin)
+
+Yayına almak: değişikliği `main`'e push et → Pages 1–2 dk içinde günceller.
+```bash
+git add -A && git commit -m "..." && git push
+```
 
 ## Çalıştırma
 ```bash
