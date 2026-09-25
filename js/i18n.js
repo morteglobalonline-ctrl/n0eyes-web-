@@ -61,7 +61,6 @@ window.I18N = (() => {
     [`tek günde işlenen tespit · tepe`, `detections in a single day · peak`],
     [`kesintisiz izleme · gece görüşü dahil`, `continuous watch · night vision included`],
     [`ayırt edilen sınıf · insan, araç, ekipman`, `classes told apart · people, vehicles, equipment`],
-    [`rampa doluluğu · saniye hassasiyetinde`, `dock occupancy · to the second`],
     [`adam-dakikanın hareketsiz payı`, `share of man-minutes spent idle`],
     // dünya
     [`DÜNYANIN HER YERİNDEN · AYNI MOTOR`, `ANYWHERE IN THE WORLD · SAME ENGINE`],
@@ -225,14 +224,14 @@ WORKFORCE
     const md = document.querySelector('meta[name="description"]'); if (md) md.content = js[lang].desc;
     const pre = document.querySelector('.brief__body'); if (pre) pre.textContent = js[lang].brief;
     document.querySelectorAll('.lang').forEach(b => { b.textContent = lang === 'tr' ? 'EN' : 'TR'; b.setAttribute('aria-label', lang === 'tr' ? 'Switch to English' : 'Türkçeye geç'); });
-    try { localStorage.setItem('n0eyes-lang', lang); } catch {}
+    try { (window.n0Riza && window.n0Riza() ? localStorage : sessionStorage).setItem('n0eyes-lang', lang); } catch {}
     dispatchEvent(new CustomEvent('langchange', { detail: lang }));
   };
 
   const initial = () => {
     const q = new URLSearchParams(location.search).get('lang');
     if (q) return q;
-    try { const s = localStorage.getItem('n0eyes-lang'); if (s) return s; } catch {}
+    try { const s = localStorage.getItem('n0eyes-lang') || sessionStorage.getItem('n0eyes-lang'); if (s) return s; } catch {}
     return 'tr';
   };
   return { apply, initial, get lang() { return lang; }, t: (k) => js[lang][k] };

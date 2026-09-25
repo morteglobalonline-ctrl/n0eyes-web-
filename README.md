@@ -72,6 +72,14 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 (`captions`, `events`, `etiket`, `brief`, `title`) `I18N.js` tablosunda. Seçim: `?lang=en` > localStorage > tr.
 Yeni metin eklerken: TR'yi HTML'e yaz, `P` listesine `[TR, EN]` çifti ekle. Eşleşmeyen metin TR kalır (kırılmaz).
 
+## Çerez / gizlilik teknik durumu
+- **Dış istek yok:** yazı tipleri `assets/fonts/` içinde yerel barındırılır (`css/fonts.css`), Google Fonts çağrısı kaldırıldı.
+  Böylece ziyaretçinin IP'si üçüncü tarafa gitmez — çerez rızasının asıl tartışmalı noktası buydu.
+- **Tek saklanan şey** dil tercihidir (`n0eyes-lang`). Reklam/takip çerezi yoktur.
+- `js/cerez.js`: alt şerit. **Kabul** → tercih `localStorage`'da kalıcı. **Reddet** → kalıcı hiçbir şey yazılmaz,
+  dil yalnız o sekmede geçerli olur (`sessionStorage`). Karar `n0eyes-cerez` anahtarında tutulur ve
+  `window.n0Riza()` ile i18n/sayfa scriptleri tarafından sorulur.
+
 ## Yasal / bilgi sayfaları
 `sss.html`, `kvkk.html`, `gizlilik.html`, `cerez.html`, `kosullar.html` — footer'daki **Yasal** ve **Şirket**
 sütunlarından açılır. Her sayfa TR ve EN bloğu içerir (`[data-dil]`), dil ana siteyle ortak (`localStorage`).

@@ -235,7 +235,7 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .pill{font-size:11px;letter-spacing:.06em;color:var(--green);background:var(--green-dim);padding:5px 10px;border-radius:999px}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 24px;margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 22px;margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
 .stat b{display:block;font-family:var(--font-h);font-size:clamp(32px,3.4vw,48px);font-weight:700;letter-spacing:-.03em;color:var(--green);line-height:1}
 .stat span{display:block;color:var(--gray);font-size:14px;margin-top:10px;max-width:24ch}
 .stats__note{grid-column:1/-1;font-size:12px;color:var(--gray);opacity:.7;margin-top:8px}
@@ -410,3 +410,19 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .footer__inner{grid-template-columns:1fr}
   .footer__bottom{flex-direction:column;gap:8px}
 }
+
+/* ================= ÇEREZ ŞERİDİ ================= */
+.cerez{position:fixed;left:var(--pad);right:var(--pad);bottom:20px;z-index:90;max-width:720px;margin:0 auto;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:rgba(16,18,20,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line2);border-radius:16px;padding:16px 18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);opacity:0;transform:translateY(14px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.cerez.is-in{opacity:1;transform:none}
+.cerez p{flex:1;min-width:240px;margin:0;font-size:13px;line-height:1.55;color:var(--gray)}
+.cerez p a{color:var(--green);text-decoration:underline;text-underline-offset:2px}
+.cerez__bt{display:flex;gap:8px;flex-shrink:0}
+.cerez button{font-family:var(--font-h);font-size:13px;font-weight:600;padding:10px 16px;border-radius:999px;cursor:pointer;
+  background:transparent;border:1px solid var(--line2);color:var(--white);transition:border-color .2s,background .2s}
+.cerez button:hover{border-color:var(--green)}
+.cerez .cerez__ok{background:var(--green);border-color:var(--green);color:#052614}
+@media (max-width:600px){ .cerez{bottom:12px;padding:14px;gap:12px} .cerez__bt{width:100%} .cerez button{flex:1} }
