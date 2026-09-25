@@ -63,9 +63,6 @@ window.I18N = (() => {
     [`ayırt edilen sınıf · insan, araç, ekipman`, `classes told apart · people, vehicles, equipment`],
     [`rampa doluluğu · saniye hassasiyetinde`, `dock occupancy · to the second`],
     [`adam-dakikanın hareketsiz payı`, `share of man-minutes spent idle`],
-    [`yanlış alarm · 30 dk boş gece sahnesi`, `false alarms · 30 min of empty night footage`],
-    [`mesai dışı varlığı yakalama süresi`, `time to catch after-hours presence`],
-    [`n0eyes motoru · Eylül 2026 canlı ölçümleri`, `n0eyes engine · live measurements, September 2026`],
     // dünya
     [`DÜNYANIN HER YERİNDEN · AYNI MOTOR`, `ANYWHERE IN THE WORLD · SAME ENGINE`],
     [`Londra'dan Tokyo'ya, <span class="g">aynı gözle.</span>`, `From London to Tokyo, <span class="g">the same eye.</span>`],
