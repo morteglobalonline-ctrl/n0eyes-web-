@@ -133,6 +133,113 @@
   const fmt = (s) => [s / 3600 | 0, (s / 60 | 0) % 60, s % 60].map(n => String(n).padStart(2, '0')).join(':');
   setInterval(() => { hudSec = (hudSec + 1) % 86400; hudClock.textContent = fmt(hudSec); }, 1000);
 
+
+  /* ---------- TANIMA: VD-3 kare dizisi, kaydırdıkça sağa akar ---------- */
+  (() => {
+    const bolum = $('#tanima'); if (!bolum) return;
+    const cv = $('#recoCanvas', bolum), cx = cv.getContext('2d', { alpha: false });
+    const sticky = $('.reco__sticky', bolum), loader = $('#recoLoader', bolum);
+    const capT = $('#recoTitle', bolum), capS = $('#recoText', bolum), sayac = $('#recoCount', bolum), track = $('#recoTrack', bolum);
+    const lead = $('.reco__head .lead', bolum);
+    const N = +cv.dataset.frames, SRC = cv.dataset.src;
+    const kare = new Array(N).fill(null);
+    let yuklendi = 0, cizilen = -1, sonGrup = -1, sonAktif = -1, hedef = 0, simdi = 0, basladi = false;
+
+    // etiket şeridi (video sırası) ve grup anlatımı — metinler I18N.t('reco')
+    const ETIKET = () => I18N.t('recoLabels');
+    const GRUP = () => I18N.t('recoGroups');   // [esik, baslik, metin]
+    ETIKET().forEach((e) => { const i = document.createElement('i'); i.textContent = e; track.appendChild(i); });
+    const noktalar = [...track.children];
+
+    const yol = (i) => SRC.replace('{i}', String(i + 1).padStart(4, '0'));
+    const yukleKare = (i) => new Promise((res) => {
+      const im = new Image(); im.decoding = 'async';
+      im.onload = () => { kare[i] = im; yuklendi++; ilerleme(); res(); };
+      im.onerror = () => res();
+      im.src = yol(i);
+    });
+    const ilerleme = () => {
+      loader.style.setProperty('--p', (yuklendi / N).toFixed(3));
+      if (!bolum.classList.contains('is-ready') && yuklendi >= Math.min(20, N)) { bolum.classList.add('is-ready'); cizilen = -1; ciz(sonP, true); }
+    };
+    const sira = [...Array(N).keys()];
+    const oncelik = [...sira.filter((i) => i % 3 === 0), ...sira.filter((i) => i % 3 !== 0)];
+    let imlec = 0;
+    const isci = async () => { while (imlec < oncelik.length) { const i = oncelik[imlec++]; if (!kare[i]) await yukleKare(i); } };
+    const yuklemeyeBasla = () => { if (basladi) return; basladi = true; for (let k = 0; k < 5; k++) isci(); };
+
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const olcekle = () => { const r = cv.getBoundingClientRect(); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); cizilen = -1; ciz(simdi, true); };
+    addEventListener('resize', olcekle, { passive: true });
+    const istendi = new Set();
+    let sonP = 0;                                  // en son istenen ilerleme
+    // geç gelen ESKİ kare ekrana basılmasın: yüklenince yalnızca hâlâ istenen kare ise çizilir
+    const acil = (i) => { if (i >= 0 && i < N && !kare[i] && !istendi.has(i)) { istendi.add(i); yukleKare(i).then(() => { if (Math.round(sonP * (N - 1)) === i) { cizilen = -1; ciz(sonP, true); } }); } };
+    const enYakin = (i) => { for (let k = i; k >= 0; k--) if (kare[k]) return k; for (let k = i; k < N; k++) if (kare[k]) return k; return -1; };
+    const ciz = (p, zorla) => {
+      sonP = p;
+      const tam = Math.round(p * (N - 1));
+      acil(tam);                                  // hızlı kaydırmada istenen kare öne alınır
+      const i = enYakin(tam);
+      if (i < 0 || (i === cizilen && !zorla)) return;
+      const im = kare[i], cw = cv.width, ch = cv.height;
+      const s = Math.min(cw / im.naturalWidth, ch / im.naturalHeight);   // tam sığdır: nesneler ve etiketleri kırpılmasın
+      const w = im.naturalWidth * s, h = im.naturalHeight * s;
+      ctxTemizle(cw, ch); cx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+      cizilen = i;
+    };
+    const ctxTemizle = (w, h) => { cx.fillStyle = '#000'; cx.fillRect(0, 0, w, h); };
+
+    const uygula = (p) => {
+      ciz(p);
+      // giriş metni videodaki etiketleri kapatmasın: kaydırınca çekilir
+      if (lead) { const o = 1 - clamp(p / 0.1, 0, 1); lead.style.opacity = o; lead.style.transform = `translateY(${(1 - o) * -8}px)`; }
+      const g = GRUP(); let gi = 0; g.forEach((x, i) => { if (p >= x[0]) gi = i; });
+      if (gi !== sonGrup) { sonGrup = gi; capT.textContent = g[gi][1]; capS.textContent = g[gi][2]; }
+      // şerit: video sırasına göre görülenler işaretlenir
+      const n = noktalar.length, aktif = Math.min(n - 1, Math.floor(p * n));
+      noktalar.forEach((el, i) => { el.classList.toggle('is-on', i === aktif); el.classList.toggle('is-seen', i < aktif); });
+      if (aktif !== sonAktif) {   // dar ekranda şerit tek satır: aktif etiketi ortala
+        sonAktif = aktif; const el = noktalar[aktif];
+        if (el && track.scrollWidth > track.clientWidth + 4) track.scrollTo({ left: el.offsetLeft - track.clientWidth / 2 + el.offsetWidth / 2, behavior: 'smooth' });
+      }
+      sayac.textContent = String(aktif + 1);
+    };
+
+    const rp = new URLSearchParams(location.search).get('rp'); // debug: ?rp=0.5 -> bölümü o ilerlemede sabitle
+    const oran = () => {
+      if (rp !== null) return +rp;
+      const r = bolum.getBoundingClientRect();
+      const toplam = bolum.offsetHeight - sticky.offsetHeight;
+      return clamp(-r.top / Math.max(1, toplam), 0, 1);
+    };
+    let calisiyor = false;
+    const dongu = () => {
+      hedef = oran();
+      const d = hedef - simdi;
+      simdi += d * (reduced || rp !== null ? 1 : clamp(0.3 + Math.abs(d) * 2, 0.3, 0.6));
+      if (Math.abs(d) < 0.0008) simdi = hedef;
+      uygula(simdi);
+      if (calisiyor) requestAnimationFrame(dongu);
+    };
+    // görünüme yaklaşınca yükle + döngüyü yalnız görünürken çalıştır (pil/CPU)
+    if (rp !== null) {                            // debug: sabit ilerlemede her karede yeniden çiz
+      yuklemeyeBasla(); calisiyor = true; olcekle();
+      const zorla = () => { cizilen = -1; uygula(+rp); requestAnimationFrame(zorla); };
+      requestAnimationFrame(zorla);
+    }
+    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) yuklemeyeBasla(); }), { rootMargin: '200% 0px' }).observe(bolum);
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { if (!calisiyor) { calisiyor = true; olcekle(); requestAnimationFrame(dongu); } }
+      else calisiyor = false;
+    }), { threshold: 0 }).observe(bolum);
+    addEventListener('langchange', () => {
+      sonGrup = -1;
+      const yeni = ETIKET(); noktalar.forEach((el, i) => { el.textContent = yeni[i] ?? el.textContent; });
+      uygula(simdi);
+    });
+  })();
+
   /* ---------- REVEAL ---------- */
   const io = new IntersectionObserver((es) => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }

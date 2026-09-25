@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260917b">
+  <link rel="stylesheet" href="css/style.css?v=20260925a">
 </head>
 <body>
 
@@ -74,7 +74,7 @@
     </a>
     <nav class="nav__links" id="navLinks">
       <a href="#urun">Ürün</a>
-      <a href="#nasil">Nasıl Çalışır</a>
+      <a href="#tanima">Tanıma</a>
       <a href="#canli">Canlı Analiz</a>
       <a href="#dunya">Dünya</a>
       <a href="#yetenekler">Yetenekler</a>
@@ -149,48 +149,31 @@
 </section>
 
 <!-- ================= NASIL ÇALIŞIR ================= -->
-<section class="section section--alt" id="nasil">
-  <div class="container">
-    <div class="section__head reveal">
-      <p class="eyebrow">KURULUM FELSEFESİ</p>
-      <h2>Mevcut sisteme dokunmadan analiz.</h2>
-      <p class="lead">Kamera / DVR görüntü akışı → ayrı bir n0eyes bilgisayarı → sade bir panel → yönetici aksiyonu. Dört adım, sıfır yeni kamera.</p>
+<!-- ================= TANIMA (VD-3: kaydırdıkça sağa akan sınıflandırma geçidi) ================= -->
+<section class="reco" id="tanima">
+  <div class="reco__sticky">
+    <div class="container reco__head">
+      <p class="eyebrow">AYNI MOTOR · FARKLI ANLAM</p>
+      <h2>Hepsini görür. <span class="g">Hangisi olduğunu bilir.</span></h2>
+      <p class="lead">Bir kamera için hepsi hareket eden bir lekedir. n0eyes gemiyi tekneden, kamyonu forkliftten, doktoru güvenlik görevlisinden ayırır.</p>
     </div>
 
-    <div class="pipeline reveal" id="pipeline">
-      <svg class="pipeline__line" viewBox="0 0 1200 8" preserveAspectRatio="none" aria-hidden="true">
-        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__track"/>
-        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__flow"/>
-      </svg>
-      <div class="pipeline__step">
-        <div class="pipeline__num">01</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><path d="M3 8h12l4-2v10l-4-2H3z"/><path d="M7 16v3"/></svg></div>
-        <h3>Kamera / DVR</h3>
-        <p>Mevcut görüntü akışı, olduğu gibi alınır.</p>
+    <div class="reco__stage">
+      <!-- Kare dizisi: assets/frames-vd3/f_0001..f_0112.webp (VD-3, 12 fps, 1600px; HAMER kuyruğu kesildi, köpek yüz kutusu temizlendi) -->
+      <canvas class="reco__canvas" id="recoCanvas" data-frames="112" data-src="assets/frames-vd3/f_{i}.webp"></canvas>
+      <div class="reco__hud" aria-hidden="true">
+        <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
       </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">02</div>
-        <div class="pipeline__icon pipeline__icon--hero"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/></svg></div>
-        <h3>n0eyes Bilgisayar</h3>
-        <p>AI izleme katmanı. Tek GPU'lu mini PC; görüntü binadan çıkmaz.</p>
-      </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">03</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></div>
-        <h3>Dashboard</h3>
-        <p>Rapor, uyarı ve zaman çizgisi tek panelde.</p>
-      </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">04</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg></div>
-        <h3>Yönetim</h3>
-        <p>Aksiyon ve karar. Sabah brifi, anlık uyarı.</p>
-      </div>
+      <div class="reco__loader" id="recoLoader"><i></i></div>
     </div>
 
-    <div class="callout reveal">
-      <div class="callout__label">ÖNEMLİ AYRIM</div>
-      <p><strong>n0eyes kamera satıcısı değildir.</strong> İşletmenin kendi kamera düzenini bozmadan, görüntüyü izleyen ve anlamlandıran bağımsız bir AI vision katmanı olarak konumlanır.</p>
+    <div class="container reco__foot">
+      <div class="reco__meta"><span class="reco__badge"><span class="dot"></span>SINIFLANDIRMA</span><span class="reco__count"><b id="recoCount">0</b> / 14 <span>SINIF</span></span></div>
+      <div class="reco__cap">
+        <b id="recoTitle">DENİZ TAŞITLARI</b>
+        <span id="recoText">Konteyner gemisi mi, tekne mi? Biri sevkiyattır, diğeri ziyaret.</span>
+      </div>
+      <div class="reco__track" id="recoTrack" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -426,6 +409,48 @@
         <div><b>0</b><span>dışarı çıkan görüntü</span></div>
       </div>
     </div>
+
+    <div class="section__head reveal" style="margin-top:56px">
+      <p class="eyebrow">KURULUM FELSEFESİ</p>
+      <h2>Mevcut sisteme dokunmadan analiz.</h2>
+      <p class="lead">Kamera / DVR görüntü akışı → ayrı bir n0eyes bilgisayarı → sade bir panel → yönetici aksiyonu. Dört adım, sıfır yeni kamera.</p>
+    </div>
+
+    <div class="pipeline reveal" id="pipeline">
+      <svg class="pipeline__line" viewBox="0 0 1200 8" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__track"/>
+        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__flow"/>
+      </svg>
+      <div class="pipeline__step">
+        <div class="pipeline__num">01</div>
+        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><path d="M3 8h12l4-2v10l-4-2H3z"/><path d="M7 16v3"/></svg></div>
+        <h3>Kamera / DVR</h3>
+        <p>Mevcut görüntü akışı, olduğu gibi alınır.</p>
+      </div>
+      <div class="pipeline__step">
+        <div class="pipeline__num">02</div>
+        <div class="pipeline__icon pipeline__icon--hero"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/></svg></div>
+        <h3>n0eyes Bilgisayar</h3>
+        <p>AI izleme katmanı. Tek GPU'lu mini PC; görüntü binadan çıkmaz.</p>
+      </div>
+      <div class="pipeline__step">
+        <div class="pipeline__num">03</div>
+        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></div>
+        <h3>Dashboard</h3>
+        <p>Rapor, uyarı ve zaman çizgisi tek panelde.</p>
+      </div>
+      <div class="pipeline__step">
+        <div class="pipeline__num">04</div>
+        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg></div>
+        <h3>Yönetim</h3>
+        <p>Aksiyon ve karar. Sabah brifi, anlık uyarı.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout__label">ÖNEMLİ AYRIM</div>
+      <p><strong>n0eyes kamera satıcısı değildir.</strong> İşletmenin kendi kamera düzenini bozmadan, görüntüyü izleyen ve anlamlandıran bağımsız bir AI vision katmanı olarak konumlanır.</p>
+    </div>
   </div>
 </section>
 
@@ -523,7 +548,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
       <span class="brand__tag">AI VISION SYSTEM</span>
       <p>n0eyes Teknoloji A.Ş.<br>Maslak Mah. Büyükdere Cad. No:123<br>Sarıyer / İstanbul, Türkiye</p>
     </div>
-    <div class="footer__col"><b>Ürün</b><a href="#nasil">Nasıl Çalışır</a><a href="#canli">Canlı Analiz</a><a href="#yetenekler">Yetenekler</a><a href="#tesis">Tesis Haritası</a></div>
+    <div class="footer__col"><b>Ürün</b><a href="#tanima">Tanıma</a><a href="#canli">Canlı Analiz</a><a href="#yetenekler">Yetenekler</a><a href="#tesis">Tesis Haritası</a></div>
     <div class="footer__col"><b>Şirket</b><a href="#pilot">Pilot Plan</a><a href="#gizlilik">Gizlilik &amp; KVKK</a><a href="#iletisim">İletişim</a></div>
     <div class="footer__col"><b>İletişim</b><a href="mailto:info@n0eyes.com">info@n0eyes.com</a><a href="https://www.n0eyes.com">www.n0eyes.com</a></div>
   </div>
@@ -533,7 +558,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
   </div>
 </footer>
 
-<script src="js/i18n.js?v=20260917b" defer></script>
-<script src="js/main.js?v=20260917b" defer></script>
+<script src="js/i18n.js?v=20260925a" defer></script>
+<script src="js/main.js?v=20260925a" defer></script>
 </body>
 </html>

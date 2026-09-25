@@ -47,6 +47,17 @@ Alt yazılar `js/main.js` içindeki `CAPTIONS` dizisinde (ilerleme eşiği, meti
 - `?hp=0.7` → intro'yu %70 ilerlemede sabitler
 - `?site=1` → intro atlanır, site doğrudan açılır
 - `?flat=1` → intro atlanır + tüm reveal'lar açık (tam sayfa ekran görüntüsü)
+- `?only=tanima` → yalnız o bölüm görünür · `?rp=0.6` → tanıma bölümünü o ilerlemede sabitler
+
+## Tanıma bölümü (VD-3, #tanima)
+"Nasıl Çalışır" bölümünün yerini aldı; kurulum hattı + "önemli ayrım" kutusu **Tesis** bölümünün altına taşındı.
+Kaydırdıkça video sağa akar (girişteki kare-dizisi tekniği): `assets/frames-vd3/f_0001..f_0112.webp`
+(VD-3, 12 fps, 1600 px, ~3.6 MB). Bölüm görünüme yaklaşınca yüklenir, yalnız görünürken çizer.
+Kaynakta iki düzeltme yapıldı: sondaki **"HAMER" arabası kesildi** (kare 113+) ve **köpeğin yüz kutusu**
+temizlendi (yeşil bileşen kümesi tespiti + inpaint).
+Alt yazı grupları ve 14 etiketlik şerit `js/i18n.js` → `recoGroups` / `recoLabels`.
+Kareleri yeniden üretmek: `ffmpeg -i "n0eyes website VD-3.MP4" -vf "fps=12,scale=1600:-2" -q:v 2 /tmp/vd3/f_%04d.jpg`
+→ `cwebp -q 76` ile `assets/frames-vd3/`. Kare sayısı değişirse `index.html` → `<canvas data-frames>`.
 
 ## Dünya akışı (şehir kameraları)
 `assets/video/sokak/*.mp4` — evo'daki n0eyes panelinin halka açık YouTube canlı yayınlarından (`servis/kameralar_canli.json`)
