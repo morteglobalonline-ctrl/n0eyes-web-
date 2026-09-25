@@ -1,0 +1,33 @@
+/* Yasal / bilgi sayfaları — ana kimlikle aynı tokenlar (style.css üstüne biner) */
+.doc{max-width:860px;margin:0 auto;padding:130px var(--pad) 90px}
+.doc__top{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:44px}
+.doc__back{font-family:var(--font-bm,inherit);font-size:14px;color:var(--green)}
+.doc h1{font-family:var(--font-h);font-size:clamp(30px,4.6vw,48px);letter-spacing:-.02em;line-height:1.1}
+.doc__date{font-size:12.5px;color:var(--gray);margin-top:12px}
+.doc h2{font-family:var(--font-h);font-size:clamp(18px,2vw,22px);margin:40px 0 12px;letter-spacing:-.01em}
+.doc h3{font-family:var(--font-h);font-size:16px;margin:24px 0 8px;color:var(--green)}
+.doc p,.doc li{color:var(--gray);font-size:15.5px;line-height:1.72}
+.doc p{margin-bottom:14px}
+.doc strong{color:var(--white);font-weight:600}
+.doc ul{margin:0 0 16px;padding:0}
+.doc ul li{position:relative;padding-left:20px;margin-bottom:9px}
+.doc ul li::before{content:"";position:absolute;left:2px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+.doc table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14px}
+.doc th,.doc td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);color:var(--gray);vertical-align:top}
+.doc th{font-family:var(--font-h);font-size:11px;letter-spacing:.14em;color:var(--white)}
+.doc__note{border:1px solid rgba(0,232,122,.28);background:rgba(0,232,122,.06);border-radius:14px;padding:18px 20px;margin:28px 0}
+.doc__note p{margin:0;color:var(--gray)}
+.doc__note b{color:var(--green);font-family:var(--font-h);font-size:11px;letter-spacing:.2em;display:block;margin-bottom:8px}
+/* SSS açılır kapanır */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;font-family:var(--font-h);font-weight:600;font-size:16px;color:var(--white)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:18px;font-size:22px;color:var(--green);font-weight:400;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;margin:0}
+.doc__lang{border:1px solid var(--line2);background:transparent;color:var(--white);font:600 12px var(--font-h);letter-spacing:.12em;padding:8px 12px;border-radius:999px;cursor:pointer}
+.doc__lang:hover{border-color:var(--green)}
+[data-dil]{display:none}
+[data-dil].is-on{display:block}
+@media (max-width:720px){ .doc{padding:100px var(--pad) 70px} .doc__top{margin-bottom:30px} }

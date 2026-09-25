@@ -12,15 +12,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260925a">
+  <link rel="stylesheet" href="css/style.css?v=20260925c">
 </head>
 <body>
 
 <!-- ================= INTRO (sadece video, kaydırdıkça akar, sonunda site açılır) ================= -->
 <div class="intro" id="intro" aria-label="Tanıtım videosu">
   <div class="intro__media">
-    <!-- Kare dizisi: assets/frames/f_0001..f_0213.webp (VD-1 0–9.5 sn + VD-2 0.3–8.55 sn, 12 fps, 1440px) -->
-    <canvas class="intro__canvas" id="introCanvas" data-frames="213" data-src="assets/frames/f_{i}.webp"></canvas>
+    <!-- Kare dizisi: assets/frames/f_0001..f_0213(.webp|@2x.webp) — VD-1 0–9.5 sn + VD-2 0.3–8.55 sn, 12 fps, 1280px / 2048px -->
+    <canvas class="intro__canvas" id="introCanvas" data-frames="213" data-src="assets/frames/f_{i}.webp" data-src2x="assets/frames/f_{i}@2x.webp"></canvas>
     <div class="intro__vignette"></div>
   </div>
   <div class="intro__loader" id="introLoader"><i></i><span>Yükleniyor</span></div>
@@ -159,8 +159,8 @@
     </div>
 
     <div class="reco__stage">
-      <!-- Kare dizisi: assets/frames-vd3/f_0001..f_0112.webp (VD-3, 12 fps, 1600px; HAMER kuyruğu kesildi, köpek yüz kutusu temizlendi) -->
-      <canvas class="reco__canvas" id="recoCanvas" data-frames="112" data-src="assets/frames-vd3/f_{i}.webp"></canvas>
+      <!-- Kare dizisi: assets/frames-vd3/f_0001..f_0112(.webp|@2x.webp) (VD-3, 12 fps, 1600px / 2560px; HAMER kuyruğu kesildi, köpek yüz kutusu temizlendi) -->
+      <canvas class="reco__canvas" id="recoCanvas" data-frames="112" data-src="assets/frames-vd3/f_{i}.webp" data-src2x="assets/frames-vd3/f_{i}@2x.webp"></canvas>
       <div class="reco__hud" aria-hidden="true">
         <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
       </div>
@@ -224,11 +224,15 @@
     </div>
 
     <div class="stats reveal">
-      <div class="stat"><b data-count="21" data-suffix=" dk" data-suffix-en=" min">0</b><span>rampa doluluk süresi, saniye hassasiyetinde</span></div>
-      <div class="stat"><b data-count="46" data-suffix="%">0</b><span>adam-dakikanın hareketsiz geçen payı</span></div>
-      <div class="stat"><b data-count="0">0</b><span>yanlış alarm — 30 dk boş gece sahnesinde</span></div>
+      <div class="stat"><b data-count="10.5" data-dec="1" data-suffix=" M">0</b><span>analiz edilen nesne · 9 günde</span></div>
+      <div class="stat"><b data-count="2.4" data-dec="1" data-suffix=" M">0</b><span>tek günde işlenen tespit · tepe</span></div>
+      <div class="stat"><b data-sabit="7/24">7/24</b><span>kesintisiz izleme · gece görüşü dahil</span></div>
+      <div class="stat"><b data-count="14">0</b><span>ayırt edilen sınıf · insan, araç, ekipman</span></div>
+      <div class="stat"><b data-count="21" data-suffix=" dk" data-suffix-en=" min">0</b><span>rampa doluluğu · saniye hassasiyetinde</span></div>
+      <div class="stat"><b data-count="46" data-suffix="%" data-onek="%">0</b><span>adam-dakikanın hareketsiz payı</span></div>
+      <div class="stat"><b data-count="0">0</b><span>yanlış alarm · 30 dk boş gece sahnesi</span></div>
       <div class="stat"><b data-count="123" data-suffix=" sn" data-suffix-en=" s">0</b><span>mesai dışı varlığı yakalama süresi</span></div>
-      <p class="stats__note">Pilot ölçümü · Ağustos 2026 · 2 kamera, 1 saat kayıt · doğrulama setiyle elle karşılaştırıldı</p>
+      <p class="stats__note">n0eyes motoru · Eylül 2026 canlı ölçümleri</p>
     </div>
   </div>
 </section>
@@ -410,88 +414,6 @@
       </div>
     </div>
 
-    <div class="section__head reveal" style="margin-top:56px">
-      <p class="eyebrow">KURULUM FELSEFESİ</p>
-      <h2>Mevcut sisteme dokunmadan analiz.</h2>
-      <p class="lead">Kamera / DVR görüntü akışı → ayrı bir n0eyes bilgisayarı → sade bir panel → yönetici aksiyonu. Dört adım, sıfır yeni kamera.</p>
-    </div>
-
-    <div class="pipeline reveal" id="pipeline">
-      <svg class="pipeline__line" viewBox="0 0 1200 8" preserveAspectRatio="none" aria-hidden="true">
-        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__track"/>
-        <line x1="0" y1="4" x2="1200" y2="4" class="pipeline__flow"/>
-      </svg>
-      <div class="pipeline__step">
-        <div class="pipeline__num">01</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><path d="M3 8h12l4-2v10l-4-2H3z"/><path d="M7 16v3"/></svg></div>
-        <h3>Kamera / DVR</h3>
-        <p>Mevcut görüntü akışı, olduğu gibi alınır.</p>
-      </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">02</div>
-        <div class="pipeline__icon pipeline__icon--hero"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/></svg></div>
-        <h3>n0eyes Bilgisayar</h3>
-        <p>AI izleme katmanı. Tek GPU'lu mini PC; görüntü binadan çıkmaz.</p>
-      </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">03</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 12l3-3 2 2 4-4"/></svg></div>
-        <h3>Dashboard</h3>
-        <p>Rapor, uyarı ve zaman çizgisi tek panelde.</p>
-      </div>
-      <div class="pipeline__step">
-        <div class="pipeline__num">04</div>
-        <div class="pipeline__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg></div>
-        <h3>Yönetim</h3>
-        <p>Aksiyon ve karar. Sabah brifi, anlık uyarı.</p>
-      </div>
-    </div>
-
-    <div class="callout reveal">
-      <div class="callout__label">ÖNEMLİ AYRIM</div>
-      <p><strong>n0eyes kamera satıcısı değildir.</strong> İşletmenin kendi kamera düzenini bozmadan, görüntüyü izleyen ve anlamlandıran bağımsız bir AI vision katmanı olarak konumlanır.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= GİZLİLİK ================= -->
-<section class="section section--alt" id="gizlilik">
-  <div class="container split">
-    <div class="split__text reveal">
-      <p class="eyebrow">GİZLİLİK VE KVKK</p>
-      <h2>"Kaydın senin <span class="g">binandan çıkmıyor.</span>"</h2>
-      <p class="lead">Kimlik, biyometri ve çalışan performansı hassas alanlardır. n0eyes bunu mimarinin en başına koyar: dışarı yalnızca sayı ve olay çıkar, görüntü asla.</p>
-      <ul class="checks">
-        <li>Görüntü fabrikadaki kutuda işlenir; buluta veya bize gitmez.</li>
-        <li>Gerçek isim sisteme hiç girmez. Yüz tanıma yok, duygu tanıma yok.</li>
-        <li>Yemekhane, dinlenme ve sigara alanları analiz kapsamı dışıdır.</li>
-        <li>Kişi bazlı "verim notu" üretilmez; ölçüm hat ve bölge bazındadır.</li>
-        <li>Otomatik çıkarımlar karar desteğidir; kritik kararlar insan onayıyla.</li>
-      </ul>
-    </div>
-    <div class="split__visual reveal">
-      <div class="brief">
-        <div class="brief__head"><span class="brief__avatar"><svg viewBox="0 0 100 100"><rect x="33" y="18" width="34" height="64" rx="17" fill="none" stroke="#00E87A" stroke-width="8"/><circle cx="50" cy="50" r="9" fill="none" stroke="#00E87A" stroke-width="5"/><circle cx="50" cy="50" r="3.5" fill="#00E87A"/></svg></span><div><b>n0eyes</b><span>Sabah brifi · 07:00</span></div></div>
-        <pre class="brief__body">n0eyes · 22.08.2026
-
-RAMPA · 1 araç · toplam 21dk 49sn
-   09:18–09:40  (21dk 49sn)
-
-AVLUDA ARAÇ BEKLEMESİ · 2 kez · 12dk 34sn
-   09:09–09:18  (9dk 28sn) · CAM 1
-   09:36–09:39  (3dk 5sn) · CAM 1
-
-BEKLEME · 2 kez · toplam 1dk 57sn
-   en uzunu 09:18 · 1dk 2sn · 2 kişi hareketsiz
-
-İŞ GÜCÜ
-   CAM 1: tepe 3 kişi · 7 adam-dk
-   CAM 2: tepe 5 kişi · 28 adam-dk
-
-Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
-        <div class="brief__foot">Gerçek pilot çıktısı — WhatsApp / e-posta ile gelir</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -533,7 +455,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
       <label>Telefon<input type="tel" name="telefon" autocomplete="tel"></label>
       <label class="form__full">Kaç kameranız var, hangi alanları izlemek istersiniz?<textarea name="mesaj" rows="3"></textarea></label>
       <button type="submit" class="btn form__full">Demo Talep Et</button>
-      <p class="form__note form__full">Formu göndererek KVKK aydınlatma metnini okuduğunuzu kabul edersiniz.</p>
+      <p class="form__note form__full">Formu göndererek <a href="kvkk.html" class="g">KVKK aydınlatma metnini</a> okuduğunuzu kabul edersiniz.</p>
     </form>
   </div>
 </section>
@@ -546,10 +468,12 @@ Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
     <div class="footer__brand">
       <span class="brand__word">n<span class="g">0</span>eyes</span>
       <span class="brand__tag">AI VISION SYSTEM</span>
-      <p>n0eyes Teknoloji A.Ş.<br>Maslak Mah. Büyükdere Cad. No:123<br>Sarıyer / İstanbul, Türkiye</p>
+      <p>Mevcut kameralarınızı yapay zekâ ile izleyen bağımsız görüntü analiz katmanı.</p>
+      <div class="footer__badges"><span>KVKK</span><span>GDPR</span><span>YÜZ TANIMA YOK</span></div>
     </div>
     <div class="footer__col"><b>Ürün</b><a href="#tanima">Tanıma</a><a href="#canli">Canlı Analiz</a><a href="#yetenekler">Yetenekler</a><a href="#tesis">Tesis Haritası</a></div>
-    <div class="footer__col"><b>Şirket</b><a href="#pilot">Pilot Plan</a><a href="#gizlilik">Gizlilik &amp; KVKK</a><a href="#iletisim">İletişim</a></div>
+    <div class="footer__col"><b>Şirket</b><a href="#pilot">Pilot Plan</a><a href="sss.html">Sık Sorulan Sorular</a><a href="#iletisim">İletişim</a></div>
+    <div class="footer__col"><b>Yasal</b><a href="kvkk.html">KVKK Aydınlatma Metni</a><a href="gizlilik.html">Gizlilik Politikası</a><a href="cerez.html">Çerez Politikası</a><a href="kosullar.html">Kullanım Koşulları</a></div>
     <div class="footer__col"><b>İletişim</b><a href="mailto:info@n0eyes.com">info@n0eyes.com</a><a href="https://www.n0eyes.com">www.n0eyes.com</a></div>
   </div>
   <div class="container footer__bottom">
@@ -558,7 +482,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.</pre>
   </div>
 </footer>
 
-<script src="js/i18n.js?v=20260925a" defer></script>
-<script src="js/main.js?v=20260925a" defer></script>
+<script src="js/i18n.js?v=20260925c" defer></script>
+<script src="js/main.js?v=20260925c" defer></script>
 </body>
 </html>

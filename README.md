@@ -52,7 +52,7 @@ Alt yazılar `js/main.js` içindeki `CAPTIONS` dizisinde (ilerleme eşiği, meti
 ## Tanıma bölümü (VD-3, #tanima)
 "Nasıl Çalışır" bölümünün yerini aldı; kurulum hattı + "önemli ayrım" kutusu **Tesis** bölümünün altına taşındı.
 Kaydırdıkça video sağa akar (girişteki kare-dizisi tekniği): `assets/frames-vd3/f_0001..f_0112.webp`
-(VD-3, 12 fps, 1600 px, ~3.6 MB). Bölüm görünüme yaklaşınca yüklenir, yalnız görünürken çizer.
+(VD-3, 12 fps; 1600 px 1x + 2560 px @2x). Giriş kareleri de 1280 px / 2048 px iki set; retina ve geniş ekranda @2x yüklenir, canvas dpr 2 çizer.. Bölüm görünüme yaklaşınca yüklenir, yalnız görünürken çizer.
 Kaynakta iki düzeltme yapıldı: sondaki **"HAMER" arabası kesildi** (kare 113+) ve **köpeğin yüz kutusu**
 temizlendi (yeşil bileşen kümesi tespiti + inpaint).
 Alt yazı grupları ve 14 etiketlik şerit `js/i18n.js` → `recoGroups` / `recoLabels`.
@@ -71,6 +71,19 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 öğeler değiştirilir (dinamik sayı içeren öğelerde kelimeler `<span>` içinde olmalı). JS'ten üretilen metinler
 (`captions`, `events`, `etiket`, `brief`, `title`) `I18N.js` tablosunda. Seçim: `?lang=en` > localStorage > tr.
 Yeni metin eklerken: TR'yi HTML'e yaz, `P` listesine `[TR, EN]` çifti ekle. Eşleşmeyen metin TR kalır (kırılmaz).
+
+## Yasal / bilgi sayfaları
+`sss.html`, `kvkk.html`, `gizlilik.html`, `cerez.html`, `kosullar.html` — footer'daki **Yasal** ve **Şirket**
+sütunlarından açılır. Her sayfa TR ve EN bloğu içerir (`[data-dil]`), dil ana siteyle ortak (`localStorage`).
+Şablon ve içerik üretimi: bu sayfalar elle düzenlenebilir düz HTML'dir; ortak stil `css/sayfa.css`, script `js/sayfa.js`.
+**Uyarı:** metinler genel bilgilendirmedir, hukuk danışmanına gözden geçirtilmelidir. Ticari unvan/adres/vergi bilgisi
+eklenecekse KVKK ve Kullanım Koşulları sayfalarına yazılmalı.
+
+## Kaldırılanlar (2026-09-25)
+- "Nasıl Çalışır" bölümü → yerine **Tanıma** (VD-3); kurulum hattı da kaldırıldı.
+- Ana sayfadaki **Gizlilik & KVKK** bölümü (sabah brifi kartıyla birlikte) — bilgi fazla detaylıydı; özü footer
+  rozetlerinde (KVKK · GDPR · Yüz tanıma yok) ve yasal sayfalarda duruyor.
+- Footer'daki açık adres satırı.
 
 ## Kimlik
 Renkler/fontlar `css/style.css` başındaki `:root` tokenlarında (kimlik belgesiyle birebir).

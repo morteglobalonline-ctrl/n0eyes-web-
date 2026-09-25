@@ -30,7 +30,9 @@
   const intro = $('#intro'), spacer = $('#introSpacer'), loader = $('#introLoader');
   const canvas = $('#introCanvas'), ctx = canvas.getContext('2d', { alpha: false });
   const caption = $('#introCaption'), captionText = $('span', caption), bar = $('#introBar');
-  const N = +canvas.dataset.frames, SRC = canvas.dataset.src;
+  const N = +canvas.dataset.frames;
+  const retina = (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;      // geniş/retina ekranda yüksek çözünürlük
+  const SRC = (retina && canvas.dataset.src2x) || canvas.dataset.src;
   const frames = new Array(N).fill(null);
   let loaded = 0, drawn = -1, opened = false, lastCap = -1, target = 0, current = 0;
   const qs = new URLSearchParams(location.search);
@@ -56,7 +58,8 @@
   for (let k = 0; k < 6; k++) worker();
 
   // --- çizim: cover-fit, dpr'a göre; kare yoksa en yakın yüklü önceki kare ---
-  const dpr = Math.min(devicePixelRatio || 1, 1.5);
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
   const resize = () => { canvas.width = Math.round(innerWidth * dpr); canvas.height = Math.round(innerHeight * dpr); drawn = -1; draw(current, true); };
   addEventListener('resize', resize, { passive: true });
   const nearest = (i) => { for (let k = i; k >= 0; k--) if (frames[k]) return k; for (let k = i; k < N; k++) if (frames[k]) return k; return -1; };
@@ -141,7 +144,9 @@
     const sticky = $('.reco__sticky', bolum), loader = $('#recoLoader', bolum);
     const capT = $('#recoTitle', bolum), capS = $('#recoText', bolum), sayac = $('#recoCount', bolum), track = $('#recoTrack', bolum);
     const lead = $('.reco__head .lead', bolum);
-    const N = +cv.dataset.frames, SRC = cv.dataset.src;
+    const N = +cv.dataset.frames;
+    const retina2 = (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;
+    const SRC = (retina2 && cv.dataset.src2x) || cv.dataset.src;
     const kare = new Array(N).fill(null);
     let yuklendi = 0, cizilen = -1, sonGrup = -1, sonAktif = -1, hedef = 0, simdi = 0, basladi = false;
 
@@ -168,7 +173,8 @@
     const isci = async () => { while (imlec < oncelik.length) { const i = oncelik[imlec++]; if (!kare[i]) await yukleKare(i); } };
     const yuklemeyeBasla = () => { if (basladi) return; basladi = true; for (let k = 0; k < 5; k++) isci(); };
 
-    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
     const olcekle = () => { const r = cv.getBoundingClientRect(); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); cizilen = -1; ciz(simdi, true); };
     addEventListener('resize', olcekle, { passive: true });
     const istendi = new Set();
@@ -248,12 +254,13 @@
 
   /* ---------- SAYAÇLAR ---------- */
   const sufOf = (el) => (I18N.lang === 'en' && el.dataset.suffixEn !== undefined ? el.dataset.suffixEn : el.dataset.suffix) || '';
-  addEventListener('langchange', () => $$('[data-count]').forEach(el => { if (el.dataset.done) el.textContent = el.dataset.count + sufOf(el); }));
+  addEventListener('langchange', () => $$('[data-count]').forEach(el => { if (el.dataset.done) el.textContent = (el.dataset.onek || '') + bicim(+el.dataset.count, +(el.dataset.dec || 0)) + (el.dataset.onek ? '' : sufOf(el)); }));
+  const bicim = (v, dec) => { const x = dec ? v.toFixed(dec) : String(Math.round(v)); return I18N.lang === 'tr' ? x.replace('.', ',') : x; };
   const countUp = (el) => {
-    const end = +el.dataset.count, suf = sufOf(el), dur = 1400, t0 = performance.now();
+    const end = +el.dataset.count, suf = sufOf(el), dec = +(el.dataset.dec || 0), on = el.dataset.onek || '', dur = 1400, t0 = performance.now();
     const step = (t) => {
       const k = clamp((t - t0) / dur, 0, 1), e = 1 - Math.pow(1 - k, 3);
-      el.textContent = Math.round(end * e) + suf;
+      el.textContent = on + bicim(end * e, dec) + (on ? '' : suf);
       if (k < 1) requestAnimationFrame(step); else el.dataset.done = '1';
     };
     requestAnimationFrame(step);
@@ -317,7 +324,7 @@
   /* ---------- DEBUG: ?flat=1 -> intro atlanır, her şey açık (tam sayfa ekran görüntüsü) ---------- */
   if (new URLSearchParams(location.search).has('flat')) {
     $$('.reveal, .feature, #pipeline, #map').forEach(el => el.classList.add('is-in'));
-    $$('[data-count]').forEach(el => { el.textContent = el.dataset.count + sufOf(el); el.dataset.done = '1'; });
+    $$('[data-count]').forEach(el => { el.textContent = (el.dataset.onek || '') + bicim(+el.dataset.count, +(el.dataset.dec || 0)) + (el.dataset.onek ? '' : sufOf(el)); el.dataset.done = '1'; });
     mapCount.textContent = $$('.cam', map).filter(c => c.getClientRects().length).length;
     $('.hero').style.minHeight = '900px'; // tam sayfa ekran görüntüsünde 100vh şişmesin
     const only = new URLSearchParams(location.search).get('only'); // &only=dunya -> yalnız o bölüm
