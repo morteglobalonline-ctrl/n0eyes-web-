@@ -7,9 +7,11 @@
   const dugme = f.querySelector('button[type="submit"]');
   const T = {
     tr: { gonderiliyor: 'Gönderiliyor…', ok: 'Talebiniz bize ulaştı', okAlt: 'Bir iş günü içinde dönüş yapıyoruz. Onay e-postası yolda.',
-          hata: 'Gönderilemedi — lütfen tekrar deneyin ya da info@n0eyes.com adresine yazın.', yeni: 'Yeni talep gönder' },
+          hata: 'Gönderilemedi — lütfen tekrar deneyin ya da info@n0eyes.com adresine yazın.', yeni: 'Yeni talep gönder',
+          epostaHata: 'E-posta adresini kontrol edin — bu adrese ulaşamıyoruz.' },
     en: { gonderiliyor: 'Sending…', ok: 'Your request has reached us', okAlt: 'We reply within one business day. A confirmation e-mail is on its way.',
-          hata: 'Could not send — please try again or write to info@n0eyes.com.', yeni: 'Send another request' },
+          hata: 'Could not send — please try again or write to info@n0eyes.com.', yeni: 'Send another request',
+          epostaHata: 'Please check the e-mail address — we can’t reach it.' },
   };
   const dil = () => (document.documentElement.lang === 'en' ? 'en' : 'tr');
   const t = (k) => T[dil()][k];
@@ -49,7 +51,7 @@
       dugme.textContent = eski; dugme.disabled = false; gonderiliyor = false;
       let uyari = f.querySelector('.form__err');
       if (!uyari) { uyari = document.createElement('p'); uyari.className = 'form__err form__full'; f.appendChild(uyari); }
-      uyari.textContent = t('hata');
+      uyari.textContent = err && err.message === 'eposta_alani' ? t('epostaHata') : t('hata');
     }
   };
   const kur = () => { f.removeEventListener('submit', gonder); f.addEventListener('submit', gonder); gonderiliyor = false; };

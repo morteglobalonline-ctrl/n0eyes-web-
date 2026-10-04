@@ -10,6 +10,7 @@
  * İsteğe bağlı: SMTP_KULLANICI (varsayılan info@n0eyes.com), BILDIRIM, SITE
  */
 const nodemailer = require('nodemailer');
+const dns = require('dns').promises;
 
 const AYAR = {
   SMTP_SUNUCU: process.env.SMTP_SUNUCU || 'smtp.gmail.com',
@@ -137,6 +138,13 @@ const basliklar = (koken) => {
   return h;
 };
 const gecerliMail = (x) => /^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(x);
+// alan adı gerçekten mail alabiliyor mu? (yazım hatalı adreslere gönderip "Address not found" almayalım)
+async function alanMailAlirMi(eposta) {
+  const alan = (eposta.split('@')[1] || '').toLowerCase();
+  if (!alan || alan.endsWith('.invalid') || alan.endsWith('.test') || alan.endsWith('.example')) return false;
+  try { const mx = await dns.resolveMx(alan); return Array.isArray(mx) && mx.length > 0; }
+  catch { try { await dns.resolve(alan, 'A'); return true; } catch { return false; } }
+}
 
 exports.handler = async (event) => {
   const koken = (event.headers && (event.headers.origin || event.headers.Origin)) || '';
@@ -156,6 +164,7 @@ exports.handler = async (event) => {
     const d = { ad: al('ad'), firma: al('firma'), eposta: al('eposta'), telefon: al('telefon'),
                 mesaj: al('mesaj'), kaynak: al('kaynak'), dil: al('dil') === 'en' ? 'en' : 'tr' };
     if (!d.ad || !d.firma || !gecerliMail(d.eposta)) return { statusCode: 400, headers: h, body: JSON.stringify({ ok: false, hata: 'eksik' }) };
+    if (!(await alanMailAlirMi(d.eposta))) return { statusCode: 400, headers: h, body: JSON.stringify({ ok: false, hata: 'eposta_alani' }) };
     if (!AYAR.SMTP_SIFRE) return { statusCode: 500, headers: h, body: JSON.stringify({ ok: false, hata: 'smtp_yok' }) };
 
     const posta = nodemailer.createTransport({
