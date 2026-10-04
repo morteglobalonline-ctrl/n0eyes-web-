@@ -1,0 +1,8 @@
+{
+  "name": "n0eyes-form",
+  "private": true,
+  "description": "n0eyes demo formu — Netlify function (mail gönderimi)",
+  "dependencies": {
+    "nodemailer": "^7.0.6"
+  }
+}

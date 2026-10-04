@@ -74,31 +74,37 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 Yeni metin eklerken: TR'yi HTML'e yaz, `P` listesine `[TR, EN]` çifti ekle. Eşleşmeyen metin TR kalır (kırılmaz).
 
 ## Demo formu ve e-posta  ← KURULUM GEREKİYOR
-Form artık `mailto:` değil, **Google Apps Script** uç noktasına gönderiyor. Mailler Google Workspace
-üzerinden **info@n0eyes.com** adresinden çıkar; üçüncü taraf servis markası yok, ücretsiz.
+Form `mailto:` değil, gerçek bir uç noktaya gönderir; oradan iki mail çıkar:
+- **info@n0eyes.com** → "Demo talebi — <Firma> (<Ad>)" bildirimi; *Yanıtla* düğmesi doğrudan talep sahibine yazar.
+- **Talep sahibi** → marka kimliğinde karşılama maili, sayfa dilinde (TR/EN).
 
-1. `sunucu/form.gs` dosyasını aç, içindeki 5 adımlık kurulumu uygula (info@n0eyes.com ile oturum açmışken).
-2. Dağıtımdan çıkan **web uygulaması URL'sini** `js/form.js` içindeki `const UC = ''` satırına yapıştır.
-3. Commit + push → form canlıda çalışır.
+Mailler **Gmail SMTP** ile `info@n0eyes.com` kimliğinden çıkar (SPF kaydı zaten Google'ı gösteriyor, spam'e düşmez).
 
-### Müşteriye giden mailin metnini değiştirmek
-`sunucu/form.gs` dosyasının en üstündeki **METIN** bloğu. TR ve EN ayrı; sayfa hangi dildeyse o gider.
-Düz metin yazman yeterli — tasarım (siyah zemin, logo, yeşil düğme) otomatik kurulur:
-- her satır bir paragraf · `**kalın**` beyaz vurgulu olur
-- `{ad}` ve `{firma}` formdan gelen bilgilerle dolar
-- `1. `, `2. ` ile başlayan satırlar yeşil numaralı adım listesi olur
-- `dugme: { yazi, adres }` alttaki yeşil düğme (boş bırakılırsa çıkmaz)
+### Seçilen yol: Netlify Functions (ücretsiz, ticari kullanıma açık, 125k çağrı/ay)
+Site GitHub Pages'te kalır; Netlify yalnızca `/api/form` ucunu yayınlar.
+Dosyalar: `netlify/functions/form.js`, `netlify.toml`, `package.json`.
 
-Çalıştığında ne olur:
-- **info@n0eyes.com** → "Demo talebi — <Firma> (<Ad>)" başlıklı bildirim maili; *Yanıtla* düğmesi doğrudan
-  talep sahibine yazar (`replyTo` ayarlı).
-- **Talep sahibi** → marka kimliğinde otomatik karşılama maili (TR/EN, dili formdan gelir): "Talebiniz bize
-  ulaştı", 3 adımlık süreç, n0eyes.com düğmesi, KVKK notu.
-- İsteğe bağlı: `AYAR.SHEET_ID` doldurulursa her gönderi bir Google E-Tablo'ya da yazılır.
+**Kurulum (Ömer, ~10 dk):**
+1. Google uygulama şifresi: `myaccount.google.com` → Güvenlik → **Uygulama şifreleri** → ad `n0eyes form` → 16 haneli kodu kopyala.
+2. `netlify.com` → **Log in with GitHub** → **Add new site → Import an existing project** → `n0eyes-web-` reposunu seç → **Deploy** (ayarlar `netlify.toml`'dan otomatik gelir).
+3. **Site configuration → Environment variables → Add**: `SMTP_SIFRE` = 16 haneli şifre. (Şifre Netlify'da kalır, repoya yazılmaz.)
+4. **Deploys → Trigger deploy** (değişkeni tanıması için).
+5. Site adresini (`xxx.netlify.app`) ilet → `js/form.js` içindeki `UC` oraya ayarlanır: `https://xxx.netlify.app/api/form`.
 
-`UC` boşken form, kullanıcının e-posta istemcisini açan eski `mailto:` davranışına düşer (hiçbir şey kırılmaz).
-Formda ayrıca bal küpü alanı (bot filtresi) ve zorunlu KVKK onay kutusu var.
-Mail şablonlarını önizlemek: `sunucu/form.gs` içindeki `karsilamaHtml` / `bildirimHtml`.
+Sağlık kontrolü: `https://xxx.netlify.app/api/form` tarayıcıda → `{"ok":true,"servis":"n0eyes form","smtp":true}`
+(`smtp:false` görünüyorsa 3. adımdaki değişken eksik ya da deploy tazelenmemiş.)
+
+### Mail metnini değiştirmek
+`netlify/functions/form.js` başındaki **METIN** bloğu (TR/EN ayrı). Düz metin yaz, tasarım otomatik kurulur:
+her satır bir paragraf · `**kalın**` beyaz vurgu · `{ad}` `{firma}` formdan dolar · `1. ` ile başlayanlar
+yeşil numaralı adım olur · `dugme: { yazi, adres }` alttaki yeşil düğme.
+
+### Diğer iki hazır seçenek (şu an kullanılmıyor)
+- `sunucu/form.gs` — Google Apps Script sürümü. **Çalışmadı:** Workspace, kuruluş dışına açık Apps Script
+  dağıtımlarını engelliyor (anonim erişimde "Erişim Reddedildi — Drive"). Admin Console'da dış paylaşım
+  açılırsa kullanılabilir.
+- `~/n0eyes-form/` (evo, `n0eyes-form.service`) — aynı işi yapan Python servisi, şu an yalnız localhost'ta
+  çalışıyor. İnternete açmak için `tailscale funnel` gerekir; evo üretim makinesi olduğu için açılmadı.
 
 ## Çerez / gizlilik teknik durumu
 - **Dış istek yok:** yazı tipleri `assets/fonts/` içinde yerel barındırılır (`css/fonts.css`), Google Fonts çağrısı kaldırıldı.

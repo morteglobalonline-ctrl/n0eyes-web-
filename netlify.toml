@@ -1,0 +1,14 @@
+# n0eyes — yalnızca form fonksiyonu için Netlify yapılandırması.
+# Site GitHub Pages'te kalır; burada sadece /api/form ucu yayınlanır.
+[build]
+  command = "npm install --omit=dev"
+  publish = "netlify/bos"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/form"
+  to = "/.netlify/functions/form"
+  status = 200
