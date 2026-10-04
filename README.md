@@ -81,6 +81,14 @@ Form artık `mailto:` değil, **Google Apps Script** uç noktasına gönderiyor.
 2. Dağıtımdan çıkan **web uygulaması URL'sini** `js/form.js` içindeki `const UC = ''` satırına yapıştır.
 3. Commit + push → form canlıda çalışır.
 
+### Müşteriye giden mailin metnini değiştirmek
+`sunucu/form.gs` dosyasının en üstündeki **METIN** bloğu. TR ve EN ayrı; sayfa hangi dildeyse o gider.
+Düz metin yazman yeterli — tasarım (siyah zemin, logo, yeşil düğme) otomatik kurulur:
+- her satır bir paragraf · `**kalın**` beyaz vurgulu olur
+- `{ad}` ve `{firma}` formdan gelen bilgilerle dolar
+- `1. `, `2. ` ile başlayan satırlar yeşil numaralı adım listesi olur
+- `dugme: { yazi, adres }` alttaki yeşil düğme (boş bırakılırsa çıkmaz)
+
 Çalıştığında ne olur:
 - **info@n0eyes.com** → "Demo talebi — <Firma> (<Ad>)" başlıklı bildirim maili; *Yanıtla* düğmesi doğrudan
   talep sahibine yazar (`replyTo` ayarlı).

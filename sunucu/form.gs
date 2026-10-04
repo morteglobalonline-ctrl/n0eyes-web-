@@ -19,6 +19,46 @@
  * Not: Apps Script günlük mail kotası Workspace'te 1.500/gün; demo formu için fazlasıyla yeterli.
  */
 
+/* ============================ MAİL METNİ ============================
+ * Müşteriye gidecek otomatik mailin metni. Sayfa Türkçeyse TR, İngilizceyse EN bloğu kullanılır.
+ * DÜZ METİN yazman yeterli — tasarımı (siyah zemin, logo, yeşil düğme) script kendisi kurar.
+ *   • Paragrafları ayrı satır olarak yaz, dizinin her elemanı bir paragraf olur.
+ *   • **iki yıldız** arasına aldığın yer kalın + beyaz görünür.
+ *   • {ad} ve {firma} yazdığın yere formdan gelen bilgiler konur.
+ *   • "1. ", "2. " ile başlayan satırlar yeşil numaralı adım olarak dizilir.
+ *   • dugme: alt kısımdaki yeşil düğmenin yazısı ve adresi (boş bırakırsan düğme çıkmaz).
+ * ==================================================================== */
+const METIN = {
+  tr: {
+    konu: 'Demo talebiniz bize ulaştı — n0eyes',
+    baslik: 'Talebiniz bize ulaştı.',
+    paragraflar: [
+      'Merhaba **{ad}**, **{firma}** için gönderdiğiniz demo talebini aldık. En geç **bir iş günü** içinde sizinle iletişime geçeceğiz.',
+      '**Bundan sonra ne oluyor?**',
+      '1. 30 dakikalık keşif görüşmesi: kameralarınız, izlemek istediğiniz alanlar ve raporlama ihtiyacınız.',
+      '2. Kısa pilot: mevcut kameralarınızdan alınan görüntüyle gerçek ölçüm.',
+      '3. Sonuç sunumu: işletmenizin kör noktaları sayıya dönüşmüş hâlde.',
+      'Bu arada sistemin ne yaptığını sitede görebilirsiniz:',
+    ],
+    dugme: { yazi: 'n0eyes.com', adres: 'https://n0eyes.com' },
+    altNot: 'Bu e-posta, n0eyes.com üzerinden gönderdiğiniz demo talebi üzerine otomatik oluşturuldu. Yanıtlarsanız doğrudan ekibimize ulaşır.',
+  },
+  en: {
+    konu: 'Your n0eyes demo request has reached us',
+    baslik: 'Your request has reached us.',
+    paragraflar: [
+      'Hi **{ad}**, we received the demo request for **{firma}**. We will get in touch within **one business day**.',
+      '**What happens next?**',
+      '1. A 30-minute discovery call: your cameras, the areas you want watched, your reporting needs.',
+      '2. A short pilot: real measurement from your existing cameras.',
+      '3. The results: your blind spots turned into numbers.',
+      'In the meantime you can see what the system does on our site:',
+    ],
+    dugme: { yazi: 'n0eyes.com', adres: 'https://n0eyes.com' },
+    altNot: 'This message was generated automatically after your demo request on n0eyes.com. Replying reaches our team directly.',
+  },
+};
+
 /* ----------------------------- AYAR ----------------------------- */
 const AYAR = {
   BILDIRIM: 'info@n0eyes.com',   // talepler buraya düşer
@@ -45,11 +85,9 @@ function doPost(e) {
     });
     MailApp.sendEmail({
       to: eposta, name: AYAR.GONDEREN, replyTo: AYAR.BILDIRIM,
-      subject: dil === 'en' ? 'Your n0eyes demo request has reached us' : 'Demo talebiniz bize ulaştı — n0eyes',
+      subject: METIN[dil].konu,
       htmlBody: karsilamaHtml({ ad, firma, dil }),
-      body: dil === 'en'
-        ? `Hi ${ad},\n\nYour demo request has reached us. We reply within one business day.\n\nn0eyes — Plug. Install. See More.`
-        : `Merhaba ${ad},\n\nDemo talebiniz bize ulaştı. En geç bir iş günü içinde dönüş yapıyoruz.\n\nn0eyes — Plug. Install. See More.`,
+      body: karsilamaDuz({ ad, firma, dil }),
     });
     return cevap({ ok: true });
   } catch (err) {
@@ -101,34 +139,37 @@ function kabuk(icerik, altNot) {
 }
 
 function karsilamaHtml(d) {
-  const tr = d.dil !== 'en';
-  const icerik = tr ? `
-    <h1 style="margin:0 0 14px;font:700 24px/1.25 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.beyaz};letter-spacing:-0.5px;">Talebiniz bize ulaştı.</h1>
-    <p style="margin:0 0 16px;">Merhaba <strong style="color:${MARKA.beyaz};">${kacis(d.ad)}</strong>, <strong style="color:${MARKA.beyaz};">${kacis(d.firma)}</strong> için gönderdiğiniz demo talebini aldık. En geç <strong style="color:${MARKA.beyaz};">bir iş günü</strong> içinde size dönüyoruz.</p>
-    <p style="margin:0 0 10px;color:${MARKA.beyaz};font-weight:600;">Bundan sonra ne oluyor?</p>
-    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 18px;">
-      ${['30 dakikalık keşif görüşmesi: kameralarınız, izlemek istediğiniz alanlar ve raporlama ihtiyacınız.',
-         'Kısa pilot: mevcut kameralarınızdan alınan görüntüyle gerçek ölçüm.',
-         'Sonuç sunumu: işletmenizin kör noktaları sayıya dönüşmüş hâlde.'
-        ].map((x, i) => `<tr><td style="padding:0 10px 10px 0;vertical-align:top;font:700 13px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.yesil};">${i + 1}</td><td style="padding:0 0 10px;">${x}</td></tr>`).join('')}
-    </table>
-    <p style="margin:0 0 18px;">Bu arada sistemin ne yaptığını sitede görebilirsiniz:</p>
-    <a href="${AYAR.SITE}" style="display:inline-block;background:${MARKA.yesil};color:#052614;text-decoration:none;font:600 14px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:12px 22px;border-radius:999px;">n0eyes.com</a>`
-  : `
-    <h1 style="margin:0 0 14px;font:700 24px/1.25 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.beyaz};letter-spacing:-0.5px;">Your request has reached us.</h1>
-    <p style="margin:0 0 16px;">Hi <strong style="color:${MARKA.beyaz};">${kacis(d.ad)}</strong>, we received the demo request for <strong style="color:${MARKA.beyaz};">${kacis(d.firma)}</strong>. We reply within <strong style="color:${MARKA.beyaz};">one business day</strong>.</p>
-    <p style="margin:0 0 10px;color:${MARKA.beyaz};font-weight:600;">What happens next?</p>
-    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 18px;">
-      ${['A 30-minute discovery call: your cameras, the areas you want watched, your reporting needs.',
-         'A short pilot: real measurement from your existing cameras.',
-         'The results: your blind spots turned into numbers.'
-        ].map((x, i) => `<tr><td style="padding:0 10px 10px 0;vertical-align:top;font:700 13px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.yesil};">${i + 1}</td><td style="padding:0 0 10px;">${x}</td></tr>`).join('')}
-    </table>
-    <a href="${AYAR.SITE}" style="display:inline-block;background:${MARKA.yesil};color:#052614;text-decoration:none;font:600 14px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:12px 22px;border-radius:999px;">n0eyes.com</a>`;
-  const alt = tr
-    ? `Bu e-posta, ${AYAR.SITE} üzerinden gönderdiğiniz demo talebi üzerine otomatik oluşturuldu. Yanıtlarsanız doğrudan ekibimize ulaşır.<br>Görüntü binanızdan çıkmaz · Kimlik verisi tutulmaz · <a href="${AYAR.SITE}/kvkk.html" style="color:${MARKA.gri};">KVKK Aydınlatma Metni</a>`
-    : `This message was generated automatically after your demo request on ${AYAR.SITE}. Replying reaches our team directly.<br>Footage never leaves your building · No identity data · <a href="${AYAR.SITE}/kvkk.html" style="color:${MARKA.gri};">Data Protection Notice</a>`;
-  return kabuk(icerik, alt);
+  const m = METIN[d.dil === 'en' ? 'en' : 'tr'];
+  const doldur = (x) => kacis(x).replace(/\{ad\}/g, kacis(d.ad)).replace(/\{firma\}/g, kacis(d.firma))
+    .replace(/\*\*(.+?)\*\*/g, `<strong style="color:${MARKA.beyaz};">$1</strong>`);
+  let govde = '';
+  let adimAcik = false;
+  m.paragraflar.forEach((p) => {
+    const adim = /^\s*(\d+)[.)]\s+/.exec(p);
+    if (adim) {
+      if (!adimAcik) { govde += '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:4px 0 14px;">'; adimAcik = true; }
+      govde += `<tr><td style="padding:0 10px 10px 0;vertical-align:top;font:700 13px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.yesil};">${adim[1]}</td>`
+             + `<td style="padding:0 0 10px;">${doldur(p.replace(/^\s*\d+[.)]\s+/, ''))}</td></tr>`;
+      return;
+    }
+    if (adimAcik) { govde += '</table>'; adimAcik = false; }
+    govde += `<p style="margin:0 0 14px;">${doldur(p)}</p>`;
+  });
+  if (adimAcik) govde += '</table>';
+  const dugme = m.dugme && m.dugme.adres
+    ? `<a href="${m.dugme.adres}" style="display:inline-block;background:${MARKA.yesil};color:#052614;text-decoration:none;font:600 14px -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:12px 22px;border-radius:999px;">${kacis(m.dugme.yazi)}</a>`
+    : '';
+  const icerik = `<h1 style="margin:0 0 14px;font:700 24px/1.25 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:${MARKA.beyaz};letter-spacing:-0.5px;">${kacis(m.baslik)}</h1>${govde}${dugme}`;
+  const gizlilik = d.dil === 'en'
+    ? `Footage never leaves your building · No identity data · <a href="${AYAR.SITE}/kvkk.html" style="color:${MARKA.gri};">Data Protection Notice</a>`
+    : `Görüntü binanızdan çıkmaz · Kimlik verisi tutulmaz · <a href="${AYAR.SITE}/kvkk.html" style="color:${MARKA.gri};">KVKK Aydınlatma Metni</a>`;
+  return kabuk(icerik, `${kacis(m.altNot)}<br>${gizlilik}`);
+}
+
+function karsilamaDuz(d) {
+  const m = METIN[d.dil === 'en' ? 'en' : 'tr'];
+  const sade = (x) => x.replace(/\{ad\}/g, d.ad).replace(/\{firma\}/g, d.firma).replace(/\*\*/g, '');
+  return `${sade(m.baslik)}\n\n${m.paragraflar.map(sade).join('\n\n')}\n\n${m.dugme ? m.dugme.adres : ''}\n\nn0eyes — Plug. Install. See More.`;
 }
 
 function bildirimHtml(d) {
