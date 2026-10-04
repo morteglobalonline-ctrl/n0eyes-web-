@@ -9,8 +9,8 @@
   <meta property="og:description" content="Mevcut kameralarını bozma. Yeni bir görüntü zekâsı katmanı ekle.">
   <meta property="og:image" content="assets/img/poster-hero.jpg">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/fonts.css?v=20260925e">
-  <link rel="stylesheet" href="css/style.css?v=20260925e">
+  <link rel="stylesheet" href="css/fonts.css?v=20261004a">
+  <link rel="stylesheet" href="css/style.css?v=20261004a">
 </head>
 <body>
 
@@ -442,14 +442,15 @@
       <h2>Mevcut kameralarını bozma.<br><span class="g">Yeni bir görüntü zekâsı katmanı ekle.</span></h2>
       <p class="lead">İnsanları, alanları ve olayları daha güvenli, daha akıllı ve daha parlak bir operasyon için anlamlandır. Pilot için 30 dakikalık bir keşif görüşmesi yeterli.</p>
     </div>
-    <form class="form" id="demoForm" action="mailto:info@n0eyes.com" method="post" enctype="text/plain">
+    <form class="form" id="demoForm" novalidate>
       <label>Ad Soyad<input type="text" name="ad" required autocomplete="name"></label>
       <label>Firma<input type="text" name="firma" required autocomplete="organization"></label>
       <label>E-posta<input type="email" name="eposta" required autocomplete="email"></label>
       <label>Telefon<input type="tel" name="telefon" autocomplete="tel"></label>
       <label class="form__full">Kaç kameranız var, hangi alanları izlemek istersiniz?<textarea name="mesaj" rows="3"></textarea></label>
+      <label class="form__full form__onay"><input type="checkbox" name="onay" required><span>İletişim bilgilerimin talebime dönüş yapmak için işlenmesini kabul ediyorum. <a href="kvkk.html" class="g">KVKK Aydınlatma Metni</a></span></label>
       <button type="submit" class="btn form__full">Demo Talep Et</button>
-      <p class="form__note form__full">Formu göndererek <a href="kvkk.html" class="g">KVKK aydınlatma metnini</a> okuduğunuzu kabul edersiniz.</p>
+      <p class="form__note form__full">Yanıtı <strong>info@n0eyes.com</strong> adresinden alırsınız; onay e-postası hemen gönderilir.</p>
     </form>
   </div>
 </section>
@@ -476,8 +477,9 @@
   </div>
 </footer>
 
-<script src="js/i18n.js?v=20260925e" defer></script>
-<script src="js/main.js?v=20260925e" defer></script>
-<script src="js/cerez.js?v=20260925e" defer></script>
+<script src="js/i18n.js?v=20261004a" defer></script>
+<script src="js/main.js?v=20261004a" defer></script>
+<script src="js/form.js?v=20261004a" defer></script>
+<script src="js/cerez.js?v=20261004a" defer></script>
 </body>
 </html>

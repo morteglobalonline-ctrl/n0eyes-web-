@@ -121,7 +121,8 @@ window.I18N = (() => {
     [`E-posta<input type="email" name="eposta" required autocomplete="email">`, `E-mail<input type="email" name="eposta" required autocomplete="email">`],
     [`Telefon<input type="tel" name="telefon" autocomplete="tel">`, `Phone<input type="tel" name="telefon" autocomplete="tel">`],
     [`Kaç kameranız var, hangi alanları izlemek istersiniz?<textarea name="mesaj" rows="3"></textarea>`, `How many cameras do you have, and which areas would you like to watch?<textarea name="mesaj" rows="3"></textarea>`],
-    [`Formu göndererek <a href="kvkk.html" class="g">KVKK aydınlatma metnini</a> okuduğunuzu kabul edersiniz.`, `By submitting you confirm you have read our <a href="kvkk.html" class="g">data protection notice</a>.`],
+    [`İletişim bilgilerimin talebime dönüş yapmak için işlenmesini kabul ediyorum. <a href="kvkk.html" class="g">KVKK Aydınlatma Metni</a>`, `I agree that my contact details may be processed to answer this request. <a href="kvkk.html" class="g">Data Protection Notice</a>`],
+    [`Yanıtı <strong>info@n0eyes.com</strong> adresinden alırsınız; onay e-postası hemen gönderilir.`, `You'll hear back from <strong>info@n0eyes.com</strong>; a confirmation e-mail is sent right away.`],
     // footer
     [`Şirket`, `Company`], [`Tesis Haritası`, `Facility Map`], [`Pilot Plan`, `Pilot Plan`], [`İletişim`, `Contact`],
     [`Yasal`, `Legal`], [`Sık Sorulan Sorular`, `FAQ`], [`KVKK Aydınlatma Metni`, `Data Protection Notice`], [`Gizlilik Politikası`, `Privacy Policy`], [`Çerez Politikası`, `Cookie Policy`], [`Kullanım Koşulları`, `Terms of Use`],

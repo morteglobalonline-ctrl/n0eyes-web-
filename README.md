@@ -2,7 +2,8 @@
 
 Saf HTML/CSS/JS, framework yok. Tek sayfa, TR/EN.
 
-**Canlı:** https://morteglobalonline-ctrl.github.io/n0eyes-web-/
+**Canlı:** https://n0eyes.com  (yedek adres: https://morteglobalonline-ctrl.github.io/n0eyes-web-/)
+**Alan adı:** Namecheap · DNS GitHub Pages'e bakıyor · repo kökündeki `CNAME` dosyası bunu sabitler
 **Kod:** https://github.com/morteglobalonline-ctrl/n0eyes-web- (GitHub Pages, `main` dalı kök dizin)
 
 Yayına almak: değişikliği `main`'e push et → Pages 1–2 dk içinde günceller.
@@ -71,6 +72,25 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 öğeler değiştirilir (dinamik sayı içeren öğelerde kelimeler `<span>` içinde olmalı). JS'ten üretilen metinler
 (`captions`, `events`, `etiket`, `brief`, `title`) `I18N.js` tablosunda. Seçim: `?lang=en` > localStorage > tr.
 Yeni metin eklerken: TR'yi HTML'e yaz, `P` listesine `[TR, EN]` çifti ekle. Eşleşmeyen metin TR kalır (kırılmaz).
+
+## Demo formu ve e-posta  ← KURULUM GEREKİYOR
+Form artık `mailto:` değil, **Google Apps Script** uç noktasına gönderiyor. Mailler Google Workspace
+üzerinden **info@n0eyes.com** adresinden çıkar; üçüncü taraf servis markası yok, ücretsiz.
+
+1. `sunucu/form.gs` dosyasını aç, içindeki 5 adımlık kurulumu uygula (info@n0eyes.com ile oturum açmışken).
+2. Dağıtımdan çıkan **web uygulaması URL'sini** `js/form.js` içindeki `const UC = ''` satırına yapıştır.
+3. Commit + push → form canlıda çalışır.
+
+Çalıştığında ne olur:
+- **info@n0eyes.com** → "Demo talebi — <Firma> (<Ad>)" başlıklı bildirim maili; *Yanıtla* düğmesi doğrudan
+  talep sahibine yazar (`replyTo` ayarlı).
+- **Talep sahibi** → marka kimliğinde otomatik karşılama maili (TR/EN, dili formdan gelir): "Talebiniz bize
+  ulaştı", 3 adımlık süreç, n0eyes.com düğmesi, KVKK notu.
+- İsteğe bağlı: `AYAR.SHEET_ID` doldurulursa her gönderi bir Google E-Tablo'ya da yazılır.
+
+`UC` boşken form, kullanıcının e-posta istemcisini açan eski `mailto:` davranışına düşer (hiçbir şey kırılmaz).
+Formda ayrıca bal küpü alanı (bot filtresi) ve zorunlu KVKK onay kutusu var.
+Mail şablonlarını önizlemek: `sunucu/form.gs` içindeki `karsilamaHtml` / `bildirimHtml`.
 
 ## Çerez / gizlilik teknik durumu
 - **Dış istek yok:** yazı tipleri `assets/fonts/` içinde yerel barındırılır (`css/fonts.css`), Google Fonts çağrısı kaldırıldı.
