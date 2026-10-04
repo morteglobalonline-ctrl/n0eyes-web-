@@ -24,31 +24,33 @@ const AYAR = {
 
 const METIN = {
   tr: {
-    konu: 'Demo talebiniz bize ulaştı — n0eyes',
-    baslik: 'Talebiniz bize ulaştı.',
+    konu: 'n0eyes Demo Talebiniz Alındı',
+    baslik: 'Demo talebiniz alındı.',
     paragraflar: [
-      'Merhaba **{ad}**, **{firma}** için gönderdiğiniz demo talebini aldık. En geç **bir iş günü** içinde sizinle iletişime geçeceğiz.',
-      '**Bundan sonra ne oluyor?**',
-      '1. 30 dakikalık keşif görüşmesi: kameralarınız, izlemek istediğiniz alanlar ve raporlama ihtiyacınız.',
-      '2. Kısa pilot: mevcut kameralarınızdan alınan görüntüyle gerçek ölçüm.',
-      '3. Sonuç sunumu: işletmenizin kör noktaları sayıya dönüşmüş hâlde.',
-      'Bu arada sistemin ne yaptığını sitede görebilirsiniz:',
+      'Merhaba,',
+      'n0eyes’e gösterdiğiniz ilgi ve demo talebiniz için teşekkür ederiz.',
+      'İşletmenizin mevcut kamera altyapısını daha akıllı, daha verimli ve daha güvenli hale getirebilecek çözümlerimizi sizinle paylaşacak olmaktan heyecan duyuyoruz.',
+      'Demo talebiniz ekibimize ulaştı. Ekibimiz, ihtiyaçlarınızı daha iyi anlamak ve size en uygun n0eyes çözümünü sunmak için **24 saatten kısa bir süre** içerisinde sizinle iletişime geçecektir.',
+      'Bu süreçte herhangi bir sorunuz olursa bu e-postayı yanıtlayarak bize ulaşabilirsiniz.',
+      'Yakında görüşmek üzere.',
+      '**n0eyes Ekibi**\nAI Vision Systems\nwww.n0eyes.com',
     ],
-    dugme: { yazi: 'n0eyes.com', adres: 'https://n0eyes.com' },
+    dugme: null,
     altNot: 'Bu e-posta, n0eyes.com üzerinden gönderdiğiniz demo talebi üzerine otomatik oluşturuldu. Yanıtlarsanız doğrudan ekibimize ulaşır.',
   },
   en: {
-    konu: 'Your n0eyes demo request has reached us',
-    baslik: 'Your request has reached us.',
+    konu: 'Your n0eyes Demo Request Has Been Received',
+    baslik: 'Your demo request has been received.',
     paragraflar: [
-      'Hi **{ad}**, we received the demo request for **{firma}**. We will get in touch within **one business day**.',
-      '**What happens next?**',
-      '1. A 30-minute discovery call: your cameras, the areas you want watched, your reporting needs.',
-      '2. A short pilot: real measurement from your existing cameras.',
-      '3. The results: your blind spots turned into numbers.',
-      'In the meantime you can see what the system does on our site:',
+      'Hello,',
+      'Thank you for your interest in n0eyes and for requesting a demo.',
+      'We are excited to show you how our solutions can help make your existing camera infrastructure smarter, more efficient, and more secure.',
+      'Your demo request has been received by our team. To better understand your needs and provide the most suitable n0eyes solution for your business, our team will contact you **within less than 24 hours**.',
+      'If you have any questions in the meantime, you can simply reply to this email.',
+      'We look forward to speaking with you soon.',
+      '**n0eyes Team**\nAI Vision Systems\nwww.n0eyes.com',
     ],
-    dugme: { yazi: 'n0eyes.com', adres: 'https://n0eyes.com' },
+    dugme: null,
     altNot: 'This message was generated automatically after your demo request on n0eyes.com. Replying reaches our team directly.',
   },
 };
@@ -82,7 +84,9 @@ function kabuk(icerik, altNot) {
 function karsilamaHtml(d) {
   const m = METIN[d.dil === 'en' ? 'en' : 'tr'];
   const doldur = (x) => kacis(x).replace(/\{ad\}/g, kacis(d.ad)).replace(/\{firma\}/g, kacis(d.firma))
-    .replace(/\*\*(.+?)\*\*/g, `<strong style="color:${MARKA.beyaz};">$1</strong>`);
+    .replace(/\*\*(.+?)\*\*/g, `<strong style="color:${MARKA.beyaz};">$1</strong>`)
+    .replace(/\b(www\.[^\s<]+)/g, `<a href="https://$1" style="color:${MARKA.yesil};text-decoration:none;">$1</a>`)
+    .replace(/\n/g, '<br>');
   let govde = '';
   let adimAcik = false;
   m.paragraflar.forEach((p) => {
