@@ -28,7 +28,7 @@ const METIN = {
     konu: 'n0eyes Demo Talebiniz Alındı',
     baslik: 'Demo talebiniz alındı.',
     paragraflar: [
-      'Merhaba,',
+      'Merhaba **{isim}**,',
       'n0eyes’e gösterdiğiniz ilgi ve demo talebiniz için teşekkür ederiz.',
       'İşletmenizin mevcut kamera altyapısını daha akıllı, daha verimli ve daha güvenli hale getirebilecek çözümlerimizi sizinle paylaşacak olmaktan heyecan duyuyoruz.',
       'Demo talebiniz ekibimize ulaştı. Ekibimiz, ihtiyaçlarınızı daha iyi anlamak ve size en uygun n0eyes çözümünü sunmak için **24 saatten kısa bir süre** içerisinde sizinle iletişime geçecektir.',
@@ -43,7 +43,7 @@ const METIN = {
     konu: 'Your n0eyes Demo Request Has Been Received',
     baslik: 'Your demo request has been received.',
     paragraflar: [
-      'Hello,',
+      'Hello **{isim}**,',
       'Thank you for your interest in n0eyes and for requesting a demo.',
       'We are excited to show you how our solutions can help make your existing camera infrastructure smarter, more efficient, and more secure.',
       'Your demo request has been received by our team. To better understand your needs and provide the most suitable n0eyes solution for your business, our team will contact you **within less than 24 hours**.',
@@ -54,6 +54,11 @@ const METIN = {
     dugme: null,
     altNot: 'This message was generated automatically after your demo request on n0eyes.com. Replying reaches our team directly.',
   },
+};
+// "ömer özgörüş" → "Ömer" (hitapta tam ad resmi kaçıyor; Türkçe büyük harf kuralıyla)
+const ilkIsim = (tam) => {
+  const p = String(tam || '').trim().split(/\s+/)[0] || '';
+  return p ? p.charAt(0).toLocaleUpperCase('tr-TR') + p.slice(1).toLocaleLowerCase('tr-TR') : '';
 };
 const kacis = (x) => String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -84,7 +89,8 @@ function kabuk(icerik, altNot) {
 
 function karsilamaHtml(d) {
   const m = METIN[d.dil === 'en' ? 'en' : 'tr'];
-  const doldur = (x) => kacis(x).replace(/\{ad\}/g, kacis(d.ad)).replace(/\{firma\}/g, kacis(d.firma))
+  const isim = ilkIsim(d.ad);
+  const doldur = (x) => kacis(x).replace(/\{isim\}/g, kacis(isim)).replace(/\{ad\}/g, kacis(d.ad)).replace(/\{firma\}/g, kacis(d.firma)).replace(/ +([,.])/g, '$1')
     .replace(/\*\*(.+?)\*\*/g, `<strong style="color:${MARKA.beyaz};">$1</strong>`)
     .replace(/\b(www\.[^\s<]+)/g, `<a href="https://$1" style="color:${MARKA.yesil};text-decoration:none;">$1</a>`)
     .replace(/\n/g, '<br>');
@@ -114,7 +120,7 @@ function karsilamaHtml(d) {
 
 function karsilamaDuz(d) {
   const m = METIN[d.dil === 'en' ? 'en' : 'tr'];
-  const sade = (x) => x.replace(/\{ad\}/g, d.ad).replace(/\{firma\}/g, d.firma).replace(/\*\*/g, '');
+  const sade = (x) => x.replace(/\{isim\}/g, ilkIsim(d.ad)).replace(/\{ad\}/g, d.ad).replace(/\{firma\}/g, d.firma).replace(/\*\*/g, '').replace(/ +([,.])/g, '$1');
   return `${sade(m.baslik)}\n\n${m.paragraflar.map(sade).join('\n\n')}\n\n${m.dugme ? m.dugme.adres : ''}\n\nn0eyes — Plug. Install. See More.`;
 }
 
