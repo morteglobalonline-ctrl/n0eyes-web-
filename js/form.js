@@ -2,7 +2,7 @@
    Uç nokta: Google Apps Script web uygulaması (mailler info@n0eyes.com'dan çıkar).
    Kurulum: sunucu/form.gs dosyasındaki adımlar → çıkan URL'yi aşağıdaki UC satırına yapıştır. */
 (() => {
-  const UC = 'https://script.google.com/macros/s/AKfycbylw5mqA-aPT__y7ZQm8LIqDnjl6OPJ70dalOb2YgMFCwP2i5Df_h4TYyDikjoMsnqUpg/exec';   // Apps Script web uygulaması (boşsa form mailto'ya düşer)
+  const UC = 'https://n0eyes-form.netlify.app/api/form';   // Netlify Function (boşsa form mailto'ya düşer)
   const f = document.querySelector('#demoForm'); if (!f) return;
   const dugme = f.querySelector('button[type="submit"]');
   const T = {
