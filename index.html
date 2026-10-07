@@ -24,7 +24,7 @@
   <meta name="theme-color" content="#0A0A0A">
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/fonts.css?v=20261008a">
-  <link rel="stylesheet" href="css/style.css?v=20261008a">
+  <link rel="stylesheet" href="css/style.css?v=20261008d">
 </head>
 <body>
 
@@ -78,7 +78,7 @@
       <a href="#urun">Ürün</a>
       <a href="#tanima">Tanıma</a>
       <a href="#canli">Nasıl Analiz Eder</a>
-      <a href="#dunya">Dünya</a>
+      <a href="#fabrika">Fabrika</a>
       <a href="#yetenekler">Yetenekler</a>
       <a href="#tesis">Tesis</a>
       <a href="#pilot">Pilot</a>
@@ -232,37 +232,30 @@
   </div>
 </section>
 
-<!-- ================= DÜNYA AKIŞI (halka açık şehir kameraları, kendi motorumuzla) ================= -->
-<section class="section" id="dunya">
+<!-- ================= FABRİKA (#79: gerçek izlerin görüntüsüz canlandırması; veri: n0eyes tools/site_iz_disa.py → assets/data) ================= -->
+<section class="section" id="fabrika">
   <div class="container">
     <div class="section__head reveal">
-      <p class="eyebrow">DÜNYANIN HER YERİNDEN · AYNI MOTOR</p>
-      <h2>Londra'dan Tokyo'ya, <span class="g">aynı gözle.</span></h2>
-      <p class="lead">Halka açık şehir kameralarından alınmış görüntüler; kutular ve sayaçlar n0eyes'ın kendi tespit motorundan (yolo11n + ByteTrack) önceden çıkarıldı, videoyla eş zamanlı çiziliyor. Kişi, araç, motosiklet — kamera neyi görüyorsa.</p>
+      <h2>Gerçek fabrika. Gerçek tespitler. <span class="g">Görüntü yok.</span></h2>
     </div>
-    <div class="cams">
-      <figure class="cam-tile reveal" data-json="assets/data/abbey_road.json">
-        <video src="assets/video/sokak/abbey_road.mp4" muted loop playsinline preload="metadata"></video>
-        <canvas></canvas>
-        <figcaption><span class="cam-tile__live">ÖRNEK KAYIT</span><b>LONDRA · Abbey Road</b><span class="cam-tile__cnt"><i data-c="0">0</i> <span>kişi</span> · <i data-c="1">0</i> <span>araç</span></span></figcaption>
-      </figure>
-      <figure class="cam-tile reveal" data-json="assets/data/bangkok.json" data-yoksay="600,0,1280,175" style="--d:.08s">
-        <video src="assets/video/sokak/bangkok.mp4" muted loop playsinline preload="metadata"></video>
-        <canvas></canvas>
-        <figcaption><span class="cam-tile__live">ÖRNEK KAYIT</span><b>BANGKOK · Soi 11</b><span class="cam-tile__cnt"><i data-c="0">0</i> <span>kişi</span> · <i data-c="1">0</i> <span>araç</span></span></figcaption>
-      </figure>
-      <figure class="cam-tile reveal" data-json="assets/data/dublin.json" style="--d:.16s">
-        <video src="assets/video/sokak/dublin.mp4" muted loop playsinline preload="metadata"></video>
-        <canvas></canvas>
-        <figcaption><span class="cam-tile__live">ÖRNEK KAYIT</span><b>DUBLIN · Temple Bar</b><span class="cam-tile__cnt"><i data-c="0">0</i> <span>kişi</span> · <i data-c="1">0</i> <span>araç</span></span></figcaption>
-      </figure>
-      <figure class="cam-tile reveal" data-json="assets/data/shibuya.json" data-yoksay="596,180,750,252;800,212,925,290;120,70,245,140" style="--d:.24s">
-        <video src="assets/video/sokak/shibuya.mp4" muted loop playsinline preload="metadata"></video>
-        <canvas></canvas>
-        <figcaption><span class="cam-tile__live">ÖRNEK KAYIT</span><b>TOKYO · Shibuya Kavşağı</b><span class="cam-tile__cnt"><i data-c="0">0</i> <span>kişi</span> · <i data-c="1">0</i> <span>araç</span></span></figcaption>
-      </figure>
+    <figure class="fab reveal" data-json="assets/data/fabrika_sentetik.json">
+      <div class="fab__sahne">
+        <canvas aria-hidden="true"></canvas>
+        <div class="fab__hud" aria-hidden="true">
+          <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
+          <div class="fab__top"><span class="fab__rozet"></span><span class="fab__saat">--:--:--</span></div>
+          <div class="fab__alarm" hidden></div>
+          <div class="fab__bolgeler"></div>
+        </div>
+      </div>
+      <figcaption class="fab__alt">Bir tekstil fabrikasında n0eyes'ın kaydettiği gerçek tespitlerden üretildi. İnsanlar nokta, araçlar farklı renkte iz olarak gösterilir; yüz ve görüntü yoktur.</figcaption>
+    </figure>
+    <div class="fab-serit reveal">
+      <p><span>Kutu başına <b>24 kamera</b></span> <small>K-69</small></p>
+      <p><span>Sor n0eyes: test setinde <b>50 sorudan 47 doğru, 0 uydurma</b></span> <small>§43</small></p>
+      <p><span>Boş gece kaydında yanlış alarm: kuralsız <b>1.554 → kuralla 0</b> (30 dk)</span> <small>§6</small></p>
+      <p><span>Bu gösterimdeki tespit sayısı</span> <b id="fabTespit">—</b> <small>JSON</small></p>
     </div>
-    <p class="cams__note reveal">Görüntüler halka açık yayınlardan alınmış kısa örneklerdir; kimlik verisi tutulmaz, yüzler işlenmez.</p>
   </div>
 </section>
 
@@ -477,8 +470,9 @@
   </div>
 </footer>
 
-<script src="js/i18n.js?v=20261008c" defer></script>
+<script src="js/i18n.js?v=20261008d" defer></script>
 <script src="js/main.js?v=20261008d" defer></script>
+<script src="js/fabrika.js?v=20261008d" defer></script>
 <script src="js/form.js?v=20261008a" defer></script>
 <script src="js/cerez.js?v=20261008a" defer></script>
 </body>

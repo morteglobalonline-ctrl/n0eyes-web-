@@ -256,6 +256,41 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .cam-tile__cnt i{font-style:normal;color:var(--green);font-family:var(--font-h);font-weight:700;font-size:14px}
 .cams__note{margin-top:14px;font-size:12px;color:var(--gray);opacity:.7}
 
+/* fabrika (#79): gerçek izlerin görüntüsüz canlandırması (js/fabrika.js) */
+.fab{margin:0}
+.fab__sahne{position:relative;width:min(100%,calc((100vh - 140px) * 1.22));margin:0 auto;border-radius:18px;overflow:hidden;clip-path:inset(0 round 18px);isolation:isolate;transform:translateZ(0);background:#07090b;border:1px solid var(--line);aspect-ratio:704/576}
+.fab__sahne canvas{position:absolute;inset:0;width:100%;height:100%}
+.fab__hud{position:absolute;inset:0;pointer-events:none}
+.fab__hud .hud__c{width:24px;height:24px}
+.fab__hud .hud__c--tl{top:14px;left:14px}.fab__hud .hud__c--tr{top:14px;right:14px}
+.fab__hud .hud__c--bl{bottom:14px;left:14px}.fab__hud .hud__c--br{bottom:14px;right:14px}
+.fab__top{position:absolute;top:20px;left:50px;right:50px;display:flex;align-items:center;gap:12px;font-family:var(--font-h);font-size:11px;letter-spacing:.14em}
+.fab__rozet{display:inline-flex;align-items:center;background:rgba(10,10,10,.7);border:1px solid rgba(0,232,122,.4);color:var(--green);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.fab__rozet:empty{display:none}
+.fab__rozet.is-sentetik{color:var(--warn);border-color:rgba(255,106,61,.6)}
+.fab__saat{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--white);background:rgba(10,10,10,.6);padding:6px 10px;border-radius:8px}
+.fab__bolgeler{position:absolute;left:50px;right:50px;bottom:20px;display:flex;flex-wrap:wrap;gap:8px}
+.fab__cip{display:inline-flex;align-items:baseline;gap:8px;background:rgba(10,10,10,.72);border:1px solid var(--line2);border-radius:10px;padding:6px 10px;backdrop-filter:blur(6px);font-family:var(--font-h)}
+.fab__cip i{font-style:normal;font-size:10px;letter-spacing:.12em;color:var(--gray)}
+.fab__cip b{font-size:16px;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+.fab__cip--yasak{border-color:rgba(255,106,61,.45)}.fab__cip--yasak b{color:var(--warn)}
+.fab__alarm{position:absolute;left:50%;top:14%;transform:translateX(-50%);width:min(290px,82%);background:rgba(16,18,21,.93);border:1px solid rgba(255,106,61,.65);border-radius:14px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(8px);animation:fabBalon .35s var(--ease)}
+.fab__alarm[hidden]{display:none}
+.fab__alarm b{display:block;font-family:var(--font-h);font-size:13px;font-weight:600;color:var(--white)}
+.fab__gb{display:flex;gap:8px;margin:10px 0 8px}
+.fab__gb span{flex:1;text-align:center;font-family:var(--font-h);font-size:12px;font-weight:600;padding:7px 0;border-radius:999px;border:1px solid var(--line2);color:var(--gray)}
+.fab__gb .is-on{background:var(--green);border-color:var(--green);color:#052614}
+.fab__gb .is-yan{background:var(--warn);border-color:var(--warn);color:#2a0d03}
+.fab__alarm small{display:block;font-size:11px;line-height:1.4;color:var(--gray)}
+.fab__alarm.is-yer{transform:none;animation-name:fabBalonO}
+@keyframes fabBalonO{from{opacity:0}to{opacity:1}}
+@keyframes fabBalon{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
+.fab__alt{margin:14px auto 0;max-width:80ch;font-size:13px;color:var(--gray);text-align:center}
+.fab-serit{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.fab-serit p{font-size:14px;line-height:1.5;color:var(--gray)}
+.fab-serit b{font-family:var(--font-h);font-weight:700;font-size:1.2em;color:var(--green)}
+.fab-serit small{display:inline-block;margin-left:4px;padding:1px 7px;border:1px solid var(--line2);border-radius:999px;font-size:10px;letter-spacing:.08em;color:var(--gray);vertical-align:2px}
+
 /* features */
 .feature{padding:28px 28px 28px 0;border-top:1px solid var(--line);position:relative}
 .feature__n{font-family:var(--font-h);font-size:12px;letter-spacing:.2em;color:var(--green);display:block;margin-bottom:16px}
@@ -416,6 +451,12 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   /* dünya kareleri: alt yazı iki satıra kırılabilsin */
   .cam-tile figcaption{flex-wrap:wrap;gap:4px 10px;padding:10px 12px;font-size:10px;letter-spacing:.08em}
   .cam-tile__cnt{margin-left:auto;font-size:11px}.cam-tile__cnt i{font-size:13px}
+  /* fabrika canlandırması: HUD küçülür, bölge çipleri sahnenin altına */
+  .fab__top{top:10px;left:10px;right:10px;gap:8px;font-size:8.5px;letter-spacing:.06em}.fab__rozet{padding:4px 8px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fab__saat{padding:4px 7px}
+  .fab__hud .hud__c{display:none}
+  .fab__bolgeler{left:8px;right:8px;bottom:8px;gap:5px}.fab__cip{padding:4px 7px;gap:6px}.fab__cip i{font-size:8.5px}.fab__cip b{font-size:13px}
+  .fab__alarm{padding:9px 11px;width:min(240px,86%)}.fab__alarm b{font-size:12px}.fab__gb{margin:7px 0 6px}.fab__gb span{font-size:11px;padding:5px 0}.fab__alarm small{font-size:10px}
+  .fab-serit{grid-template-columns:1fr;gap:14px;margin-top:28px;padding-top:20px}
   /* intro: küçük ekran */
   .intro__brand .brand__word{height:22px}.intro__brand .brand__mark{height:28px}
   .intro__caption{font-size:clamp(17px,5vw,22px);bottom:20vh}
