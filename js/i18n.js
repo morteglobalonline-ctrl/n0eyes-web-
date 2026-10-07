@@ -20,15 +20,15 @@ window.I18N = (() => {
     [`SINIF`, `CLASSES`],
     [`Tanıma`, `Recognition`], [`Neleri ayırt eder?`, `What can it tell apart?`],
     // nav
-    [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Canlı Analiz`, `Live Analysis`], [`Dünya`, `World`],
+    [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`], [`Dünya`, `World`],
     [`Yetenekler`, `Capabilities`], [`Tesis`, `Facility`], [`Pilot`, `Pilot`], [`Demo Talep Et`, `Request a Demo`],
     // hero
-    [`CANLI ANALİZ`, `LIVE ANALYSIS`], [`<span class="dot"></span>CANLI ANALİZ`, `<span class="dot"></span>LIVE ANALYSIS`], [`<span class="dot"></span>CANLI`, `<span class="dot"></span>LIVE`],
+    [`NASIL ANALİZ EDER`, `HOW IT ANALYSES`], [`ÖRNEK KAYIT`, `RECORDED SAMPLE`],
     [`mevcut kameralar`, `existing cameras`], [`kimlik verisi tutulmuyor`, `no identity data`], [`işleme ve kayıt tesiste`, `processed and stored on-site`],
     [`Kameralarınızı<br>akıllı bir denetim<br>sistemine dönüştürün.`, `Turn your cameras<br>into an intelligent<br>monitoring system.`],
     [`n0eyes, mevcut kamera altyapısına ve sunucularınıza müdahale etmeden; ayrı bir bilgisayar üzerinden canlı görüntüleri izler, anlamlandırır ve yöneticiye raporlanabilir içgörü üretir. Depo, liman, hastane, mağaza — kameranız neredeyse, n0eyes orada.`,
      `n0eyes watches your live feeds from a separate computer — without touching your camera infrastructure or servers — understands what it sees and turns it into reportable insight for management. Warehouse, port, hospital, store: wherever your camera is, n0eyes is there.`],
-    [`Canlı analizi izle`, `Watch live analysis`],
+    [`Nasıl analiz ettiğini izle`, `See how it analyses`],
     // problem
     [`BUGÜNKÜ SORUN`, `THE PROBLEM TODAY`],
     [`Kameralar çoğu zaman <span class="muted">sadece kayıt alır.</span>`, `Most cameras <span class="muted">only record.</span>`],
@@ -53,7 +53,7 @@ window.I18N = (() => {
     // canlı
     [`Bir güvenlik görevlisi gibi <span class="g">ekrandaki görüntüyü</span> okur.`, `Reads <span class="g">what's on screen</span> like a security guard would.`],
     [`Aşağıdaki görüntü gerçek bir depodan — mal kabul rampası, sabah mesaisi. Kişi kutuları, bölge çizgileri ve olaylar sistemin kendi çıktısıdır.`, `The footage below is from a real warehouse — receiving dock, morning shift. Person boxes, zone lines and events are the system's own output.`],
-    [`CANLI`, `LIVE`], [`CAM 2 · MAL KABUL`, `CAM 2 · RECEIVING`],
+    [`CAM 2 · MAL KABUL`, `CAM 2 · RECEIVING`],
     [`KİŞİ`, `PEOPLE`], [`HAREKETSİZ`, `IDLE`], [`RAMPA`, `DOCK`], [`DOLU`, `BUSY`], [`ARAÇ`, `VEHICLE`],
     [`OLAY AKIŞI`, `EVENT FEED`], [`Olaylar video ile eş zamanlı akar…`, `Events stream in sync with the video…`],
     [`Kimlik verisi tutulmaz`, `No identity data`], [`İşleme tesiste`, `Processed on-site`],
@@ -62,8 +62,8 @@ window.I18N = (() => {
     // dünya
     [`DÜNYANIN HER YERİNDEN · AYNI MOTOR`, `ANYWHERE IN THE WORLD · SAME ENGINE`],
     [`Londra'dan Tokyo'ya, <span class="g">aynı gözle.</span>`, `From London to Tokyo, <span class="g">the same eye.</span>`],
-    [`Halka açık şehir kameralarından alınmış görüntüler; kutular ve sayaçlar n0eyes'ın kendi tespit motorundan (yolo11n + ByteTrack), tarayıcıda canlı çiziliyor. Kişi, araç, motosiklet — kamera neyi görüyorsa.`,
-     `Clips from public city cameras; boxes and counters come from n0eyes' own detection engine (yolo11n + ByteTrack), drawn live in your browser. People, vehicles, motorcycles — whatever the camera sees.`],
+    [`Halka açık şehir kameralarından alınmış görüntüler; kutular ve sayaçlar n0eyes'ın kendi tespit motorundan (yolo11n + ByteTrack) önceden çıkarıldı, videoyla eş zamanlı çiziliyor. Kişi, araç, motosiklet — kamera neyi görüyorsa.`,
+     `Clips from public city cameras; boxes and counters come from n0eyes' own detection engine (yolo11n + ByteTrack), pre-computed and drawn in sync with the video. People, vehicles, motorcycles — whatever the camera sees.`],
     [`LONDRA · Abbey Road`, `LONDON · Abbey Road`], [`BANGKOK · Soi 11`, `BANGKOK · Soi 11`], [`DUBLIN · Temple Bar`, `DUBLIN · Temple Bar`], [`TOKYO · Shibuya Kavşağı`, `TOKYO · Shibuya Crossing`],
     [`kişi`, `people`], [`araç`, `vehicles`],
     [`Görüntüler halka açık yayınlardan alınmış kısa örneklerdir; kimlik verisi tutulmaz, yüzler işlenmez.`, `Short samples from public streams; no identity data is kept, faces are not processed.`],
