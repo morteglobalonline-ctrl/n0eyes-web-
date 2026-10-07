@@ -147,7 +147,6 @@ window.I18N = (() => {
         [0.577, 'İNSAN VE ROL', 'Herkes “insan” değildir: doktor, güvenlik görevlisi, kafe personeli. Üniforma rolü söyler, rol de neyin normal olduğunu.'],
         [0.81, 'HASSAS NESNELER', 'Tekerlekli sandalye, bebek arabası, köpek — öncelik, erişim ve güvenlik kuralları bunlara göre şekillenir.'],
       ],
-      formSent: 'Teşekkürler — e-posta istemciniz açılıyor',
       title: 'n0eyes — AI Vision System | Mevcut kameralarınızı yapay zekâ ile izleyin',
       desc: 'n0eyes, mevcut kamera altyapınıza dokunmadan canlı görüntüyü izler, anlamlandırır ve yöneticiye raporlanabilir içgörü üretir. Plug. Install. See More.',
       brief: `n0eyes · 22.08.2026
@@ -180,7 +179,6 @@ Toplam 5 olay. Kimlik verisi tutulmaz.`,
         [0.577, 'PEOPLE & ROLES', 'Not everyone is just “a person”: doctor, security guard, café staff. The uniform tells the role — the role tells what’s normal.'],
         [0.81, 'SENSITIVE OBJECTS', 'Wheelchair, stroller, dog — priority, access and safety rules are shaped around these.'],
       ],
-      formSent: 'Thank you — opening your e-mail client',
       title: 'n0eyes — AI Vision System | Watch your existing cameras with AI',
       desc: 'n0eyes watches live feeds without touching your camera infrastructure, understands what it sees and turns it into reportable insight for management. Plug. Install. See More.',
       brief: `n0eyes · 22.08.2026
