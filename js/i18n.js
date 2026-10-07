@@ -44,7 +44,7 @@ window.I18N = (() => {
     [`Mevcut sisteme dokunmadan analiz.`, `Analysis without touching your system.`],
     [`Kamera / DVR görüntü akışı → ayrı bir n0eyes bilgisayarı → sade bir panel → yönetici aksiyonu. Dört adım, sıfır yeni kamera.`, `Camera / DVR stream → a separate n0eyes computer → a simple dashboard → management action. Four steps, zero new cameras.`],
     [`Kamera / DVR`, `Camera / DVR`], [`Mevcut görüntü akışı, olduğu gibi alınır.`, `The existing video stream is taken as is.`],
-    [`n0eyes Bilgisayar`, `n0eyes Computer`], [`AI izleme katmanı. Tek GPU'lu mini PC; işleme ve kayıt kutuda.`, `The AI observation layer. A single-GPU mini PC; processing and storage on the box.`],
+    [`n0eyes Bilgisayar`, `n0eyes Computer`], [`AI izleme katmanı. Tek GPU'lu küçük masaüstü kutu; işleme ve kayıt kutuda.`, `The AI observation layer. A small single-GPU desktop box; processing and storage on the box.`],
     [`Dashboard`, `Dashboard`], [`Rapor, uyarı ve zaman çizgisi tek panelde.`, `Reports, alerts and timeline in one panel.`],
     [`Yönetim`, `Management`], [`Aksiyon ve karar. Sabah brifi, anlık uyarı.`, `Action and decision. Morning brief, instant alerts.`],
     [`ÖNEMLİ AYRIM`, `KEY DISTINCTION`],
@@ -112,7 +112,7 @@ window.I18N = (() => {
     [`Şeffaflık`, `Transparency`], [`Yönetici, kameralar arasında kaybolmadan sade özetler görür.`, `Managers see plain summaries without getting lost between cameras.`],
     // cta
     [`Mevcut kameralarını bozma.<br><span class="g">Yeni bir görüntü zekâsı katmanı ekle.</span>`, `Don't rip out your cameras.<br><span class="g">Add a layer of visual intelligence.</span>`],
-    [`İnsanları, alanları ve olayları daha güvenli, daha akıllı ve daha parlak bir operasyon için anlamlandır. Pilot için 30 dakikalık bir keşif görüşmesi yeterli.`, `Make sense of people, places and events for a safer, smarter, brighter operation. A 30-minute discovery call is enough to start a pilot.`],
+    [`İnsanları, alanları ve olayları daha güvenli, daha akıllı ve daha parlak bir operasyon için anlamlandır. Pilot için 15 dakikalık bir keşif görüşmesi yeterli.`, `Make sense of people, places and events for a safer, smarter, brighter operation. A 15-minute discovery call is enough to start a pilot.`],
     [`Ad Soyad<input type="text" name="ad" required autocomplete="name">`, `Full name<input type="text" name="ad" required autocomplete="name">`],
     [`Firma<input type="text" name="firma" required autocomplete="organization">`, `Company<input type="text" name="firma" required autocomplete="organization">`],
     [`E-posta<input type="email" name="eposta" required autocomplete="email">`, `E-mail<input type="email" name="eposta" required autocomplete="email">`],
