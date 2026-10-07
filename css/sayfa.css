@@ -31,3 +31,5 @@
 [data-dil]{display:none}
 [data-dil].is-on{display:block}
 @media (max-width:720px){ .doc{padding:100px var(--pad) 70px} .doc__top{margin-bottom:30px} }
+/* alt sayfalarda hamburger yok: mobilde style.css .nav__links'i tam ekran menuye cevirip gizliyor → EN dugmesi header'da gorunur kalsin */
+@media (max-width:720px){.nav__links{position:static;inset:auto;background:none;flex-direction:row;font-size:14px;gap:0;transform:none;visibility:visible;opacity:1;pointer-events:auto;transition:none}}
