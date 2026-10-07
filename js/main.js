@@ -397,9 +397,4 @@
     v.addEventListener('loadeddata', drawBoxes);
   });
 
-  /* ---------- FORM ---------- */
-  $('#demoForm').addEventListener('submit', (e) => {
-    // Şimdilik mailto; gerçek backend/Formspree bağlanınca burası değişir.
-    const b = e.target.querySelector('button'); b.textContent = I18N.t('formSent');
-  });
 })();

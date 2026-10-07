@@ -1,6 +1,5 @@
 /* n0eyes — demo formu gönderimi.
-   Uç nokta: Google Apps Script web uygulaması (mailler info@n0eyes.com'dan çıkar).
-   Kurulum: sunucu/form.gs dosyasındaki adımlar → çıkan URL'yi aşağıdaki UC satırına yapıştır. */
+   Uç nokta: Netlify Function netlify/functions/form.js (Gmail SMTP; mailler info@n0eyes.com'dan çıkar). */
 (() => {
   const UC = 'https://n0eyes-form.netlify.app/api/form';   // Netlify Function (boşsa form mailto'ya düşer)
   const f = document.querySelector('#demoForm'); if (!f) return;
@@ -28,21 +27,22 @@
     kutu.className = 'form__ok';
     kutu.innerHTML = `<div class="form__okIcon">✓</div><b>${t('ok')}</b><span>${t('okAlt')}</span>
       <button type="button" class="form__again">${t('yeni')}</button>`;
+    dugme.textContent = eski; dugme.disabled = false;
     f.replaceWith(kutu);
     kutu.querySelector('.form__again').addEventListener('click', () => { kutu.replaceWith(f); f.reset(); kur(); });
   };
 
-  let gonderiliyor = false;
+  let gonderiliyor = false, eski = '';
   const gonder = async (e) => {
     e.preventDefault();
     if (gonderiliyor) return;
     if (!UC) { location.href = `mailto:info@n0eyes.com?subject=${encodeURIComponent('Demo talebi')}&body=${encodeURIComponent([...new FormData(f)].map(([k, v]) => `${k}: ${v}`).join('\n'))}`; return; }
     gonderiliyor = true;
-    const eski = dugme.textContent; dugme.textContent = t('gonderiliyor'); dugme.disabled = true;
+    eski = dugme.textContent; dugme.textContent = t('gonderiliyor'); dugme.disabled = true;
     const veri = new FormData(f);
     veri.append('dil', dil()); veri.append('kaynak', location.pathname + location.search);
     try {
-      // Apps Script yönlendirmeli yanıt verir; basit istek (no preflight) için URLSearchParams kullanılır
+      // basit istek (no preflight) için URLSearchParams
       const r = await fetch(UC, { method: 'POST', body: new URLSearchParams([...veri]) });
       const j = await r.json().catch(() => ({ ok: r.ok }));
       if (!j.ok) throw new Error(j.hata || 'hata');
