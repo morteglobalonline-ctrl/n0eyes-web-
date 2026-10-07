@@ -49,10 +49,10 @@ h3{font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.01em}
 .nav__inner{max-width:var(--container);margin:0 auto;padding:16px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;min-width:0}
 .nav__links{min-width:0;flex-shrink:0}
 .brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.brand__mark{width:34px;height:34px;flex:none;color:var(--green)}
-.brand__word{font-family:var(--font-h);font-weight:800;font-size:26px;letter-spacing:-.03em;line-height:1}
-/* logo sifiri: Sora'nin yuvarlak 0'i 'O' gibi okunuyor → gercek logodaki dar hap; '0' metinde kalir (ekran okuyucu, kopyala) */
-.brand__word .g{display:inline-block;box-sizing:border-box;width:.42em;height:.74em;border:.13em solid var(--green);border-radius:.21em;color:transparent;overflow:hidden;text-indent:-9em;vertical-align:-.015em;margin:0 .04em 0 .02em}
+.brand__mark{width:auto;height:34px;flex:none}
+.brand__word{display:block;height:26px;width:auto}   /* gercek logo dosyasindan kirpildi (Desktop
+0eyes
+0eyes logo seffaf.png); fontla CIZILMEZ */
 .n0{font-family:var(--font-b)}   /* metin ici 'n0eyes': kucuk boyda hap kayboluyor, Inter'in dar 0'i O'dan ayrilir */
 .brand__tag{font-family:var(--font-h);font-size:9px;letter-spacing:.3em;color:var(--gray);margin-left:6px;padding-left:12px;border-left:1px solid var(--line2);line-height:1;white-space:nowrap}
 .nav__links{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500;color:var(--gray);white-space:nowrap}
@@ -77,7 +77,7 @@ h3{font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.01em}
 .intro__vignette{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 62%,rgba(0,0,0,.7) 100%);pointer-events:none}
 .intro__brand{position:absolute;top:24px;right:32px;display:flex;align-items:center;gap:10px;color:var(--white)}
-.intro__brand .brand__mark{width:32px;height:32px}
+.intro__brand .brand__mark{height:32px}
 .intro__facts{position:absolute;left:32px;bottom:30px;font-size:13px;color:var(--gray);line-height:1.8;padding-left:14px;border-left:2px solid var(--green)}
 .intro__facts b{color:var(--white);font-family:var(--font-h)}
 .intro__caption{position:absolute;left:0;right:0;bottom:19vh;text-align:center;font-family:var(--font-h);font-weight:600;font-size:clamp(18px,2.2vw,30px);letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 30px rgba(0,0,0,.7);pointer-events:none}
@@ -417,7 +417,7 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .cam-tile figcaption{flex-wrap:wrap;gap:4px 10px;padding:10px 12px;font-size:10px;letter-spacing:.08em}
   .cam-tile__cnt{margin-left:auto;font-size:11px}.cam-tile__cnt i{font-size:13px}
   /* intro: küçük ekran */
-  .intro__brand .brand__word{font-size:22px}.intro__brand .brand__mark{width:28px;height:28px}
+  .intro__brand .brand__word{height:22px}.intro__brand .brand__mark{height:28px}
   .intro__caption{font-size:clamp(17px,5vw,22px);bottom:20vh}
   .intro__scroll{bottom:28px}.intro__skip{padding:8px 12px;font-size:12px}
   .section{padding:64px 0}.section__head{margin-bottom:32px}
