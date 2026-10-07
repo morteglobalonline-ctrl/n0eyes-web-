@@ -57,11 +57,8 @@ window.I18N = (() => {
     [`KİŞİ`, `PEOPLE`], [`HAREKETSİZ`, `IDLE`], [`RAMPA`, `DOCK`], [`DOLU`, `BUSY`], [`ARAÇ`, `VEHICLE`],
     [`OLAY AKIŞI`, `EVENT FEED`], [`Olaylar video ile eş zamanlı akar…`, `Events stream in sync with the video…`],
     [`Kimlik verisi tutulmaz`, `No identity data`], [`İşleme tesiste`, `Processed on-site`],
-    [`analiz edilen nesne · 9 günde`, `objects analysed · in 9 days`],
-    [`tek günde işlenen tespit · tepe`, `detections in a single day · peak`],
     [`kesintisiz izleme · gece görüşü dahil`, `continuous watch · night vision included`],
     [`ayırt edilen sınıf · insan, araç, ekipman`, `classes told apart · people, vehicles, equipment`],
-    [`adam-dakikanın hareketsiz payı`, `share of man-minutes spent idle`],
     // dünya
     [`DÜNYANIN HER YERİNDEN · AYNI MOTOR`, `ANYWHERE IN THE WORLD · SAME ENGINE`],
     [`Londra'dan Tokyo'ya, <span class="g">aynı gözle.</span>`, `From London to Tokyo, <span class="g">the same eye.</span>`],
