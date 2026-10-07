@@ -51,6 +51,9 @@ h3{font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.01em}
 .brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .brand__mark{width:34px;height:34px;flex:none;color:var(--green)}
 .brand__word{font-family:var(--font-h);font-weight:800;font-size:26px;letter-spacing:-.03em;line-height:1}
+/* logo sifiri: Sora'nin yuvarlak 0'i 'O' gibi okunuyor → gercek logodaki dar hap; '0' metinde kalir (ekran okuyucu, kopyala) */
+.brand__word .g{display:inline-block;box-sizing:border-box;width:.42em;height:.74em;border:.13em solid var(--green);border-radius:.21em;color:transparent;overflow:hidden;text-indent:-9em;vertical-align:-.015em;margin:0 .04em 0 .02em}
+.n0{font-family:var(--font-b)}   /* metin ici 'n0eyes': kucuk boyda hap kayboluyor, Inter'in dar 0'i O'dan ayrilir */
 .brand__tag{font-family:var(--font-h);font-size:9px;letter-spacing:.3em;color:var(--gray);margin-left:6px;padding-left:12px;border-left:1px solid var(--line2);line-height:1;white-space:nowrap}
 .nav__links{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500;color:var(--gray);white-space:nowrap}
 .nav__links a:not(.btn){position:relative;transition:color .2s}
@@ -274,7 +277,7 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .map__hubRing{fill:var(--bg);stroke:var(--green);stroke-width:2}
 .map__hubPulse{fill:none;stroke:var(--green);stroke-width:2;animation:hubPulse 2.4s ease-out infinite;transform-origin:center;transform-box:fill-box}
 @keyframes hubPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.6);opacity:0}}
-.map__hubLabel{fill:var(--white);font-size:12px;text-anchor:start;letter-spacing:.08em;font-weight:600}
+.map__hubLabel{font-family:var(--font-b);fill:var(--white);font-size:12px;text-anchor:start;letter-spacing:.08em;font-weight:600}
 .map__links path{fill:none;stroke:var(--green);stroke-width:1.5;opacity:.55;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.6s var(--ease)}
 .map.is-in .map__links path{stroke-dashoffset:0}
 .map__links path:nth-child(1){transition-delay:.1s}.map__links path:nth-child(2){transition-delay:.3s}

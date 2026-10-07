@@ -5,7 +5,7 @@ window.I18N = (() => {
   const P = [
     // intro
     [`Yükleniyor`, `Loading`],
-    [`<b>n0eyes</b> · AI Vision System`, `<b>n0eyes</b> · AI Vision System`],
+    [`<b>n<span class="n0">0</span>eyes</b> · AI Vision System`, `<b>n<span class="n0">0</span>eyes</b> · AI Vision System`],
     [`Mevcut kameralarınızı yapay zekâ ile izler`, `Watches your existing cameras with AI`],
     [`İşleme ve kayıt tesisinizdeki kutuda · Kimlik verisi tutulmaz`, `Processed and stored on the box at your site · No identity data`],
     [`İstanbul, Türkiye · <span class="g">Plug. Install. See More.</span>`, `Istanbul, Türkiye · <span class="g">Plug. Install. See More.</span>`],
@@ -125,7 +125,7 @@ window.I18N = (() => {
     [`Yasal`, `Legal`], [`Sık Sorulan Sorular`, `FAQ`], [`KVKK Aydınlatma Metni`, `Data Protection Notice`], [`Gizlilik Politikası`, `Privacy Policy`], [`Çerez Politikası`, `Cookie Policy`], [`Kullanım Koşulları`, `Terms of Use`],
     [`YÜZ TANIMA YOK`, `NO FACE RECOGNITION`],
     [`Mevcut kameralarınızı yapay zekâ ile izleyen bağımsız görüntü analiz katmanı.`, `An independent video-analysis layer that watches your existing cameras with AI.`],
-    [`© 2026 n0eyes. Tüm hakları saklıdır.`, `© 2026 n0eyes. All rights reserved.`],
+    [`© 2026 n<span class="n0">0</span>eyes. Tüm hakları saklıdır.`, `© 2026 n<span class="n0">0</span>eyes. All rights reserved.`],
   ];
   const norm = (s) => s.replace(/=""/g, '').replace(/\s+/g, ' ').trim(); // required="" -> required
   const en = new Map(P.map(([tr, e]) => [norm(tr), e]));
