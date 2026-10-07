@@ -31,7 +31,10 @@
   const canvas = $('#introCanvas'), ctx = canvas.getContext('2d', { alpha: false });
   const caption = $('#introCaption'), captionText = $('span', caption), bar = $('#introBar');
   const N = +canvas.dataset.frames;
-  const retina = (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;      // geniş/retina ekranda yüksek çözünürlük
+  // veri tasarrufu / yavas ag (Save-Data, 2g/3g): 2x kare yok, karelerin yarisi (cizim en yakin kareyi kullanir)
+  const yavas = (() => { const c = navigator.connection; return !!(c && (c.saveData || /(^|-)2g$|^3g$/.test(c.effectiveType || ''))); })();
+  const atla = (i, n) => yavas && i % 2 === 1 && i !== n - 1;
+  const retina = !yavas && (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;      // geniş/retina ekranda yüksek çözünürlük
   const SRC = (retina && canvas.dataset.src2x) || canvas.dataset.src;
   const frames = new Array(N).fill(null);
   let loaded = 0, drawn = -1, opened = false, lastCap = -1, target = 0, current = 0;
@@ -46,14 +49,14 @@
     im.onerror = () => res();
     im.src = src(i);
   });
-  const queue = [...Array(N).keys()];
+  const queue = [...Array(N).keys()].filter(i => !atla(i, N));
   // öncelik: 0..29 sırayla, sonra kalanlar her 4'te bir (kaba önizleme), sonra hepsi
   const order = [...queue.slice(0, 30), ...queue.slice(30).filter(i => i % 4 === 0), ...queue.slice(30).filter(i => i % 4 !== 0)];
   let cursor = 0;
   const worker = async () => { while (cursor < order.length) { const i = order[cursor++]; if (!frames[i]) await loadFrame(i); onLoadProgress(); } };
   const onLoadProgress = () => {
-    loader.style.setProperty('--p', (loaded / N).toFixed(3));
-    if (!intro.classList.contains('is-ready') && (loaded >= 30 || loaded === N)) { intro.classList.add('is-ready'); draw(0, true); }
+    loader.style.setProperty('--p', (loaded / queue.length).toFixed(3));
+    if (!intro.classList.contains('is-ready') && (loaded >= 30 || loaded === queue.length)) { intro.classList.add('is-ready'); draw(0, true); }
   };
   for (let k = 0; k < 6; k++) worker();
 
@@ -145,7 +148,7 @@
     const capT = $('#recoTitle', bolum), capS = $('#recoText', bolum), sayac = $('#recoCount', bolum), track = $('#recoTrack', bolum);
     const lead = $('.reco__head .lead', bolum);
     const N = +cv.dataset.frames;
-    const retina2 = (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;
+    const retina2 = !yavas && (innerWidth * Math.min(devicePixelRatio || 1, 2)) > 1500;
     const SRC = (retina2 && cv.dataset.src2x) || cv.dataset.src;
     const kare = new Array(N).fill(null);
     let yuklendi = 0, cizilen = -1, sonGrup = -1, sonAktif = -1, hedef = 0, simdi = 0, basladi = false;
@@ -164,10 +167,10 @@
       im.src = yol(i);
     });
     const ilerleme = () => {
-      loader.style.setProperty('--p', (yuklendi / N).toFixed(3));
+      loader.style.setProperty('--p', (yuklendi / sira.length).toFixed(3));
       if (!bolum.classList.contains('is-ready') && yuklendi >= Math.min(20, N)) { bolum.classList.add('is-ready'); cizilen = -1; ciz(sonP, true); }
     };
-    const sira = [...Array(N).keys()];
+    const sira = [...Array(N).keys()].filter((i) => !atla(i, N));
     const oncelik = [...sira.filter((i) => i % 3 === 0), ...sira.filter((i) => i % 3 !== 0)];
     let imlec = 0;
     const isci = async () => { while (imlec < oncelik.length) { const i = oncelik[imlec++]; if (!kare[i]) await yukleKare(i); } };
