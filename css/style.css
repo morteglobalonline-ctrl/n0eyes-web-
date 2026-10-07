@@ -294,7 +294,7 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .map.is-in .cam:nth-child(7){transition-delay:1.4s}.map.is-in .cam:nth-child(8){transition-delay:1.6s}
 .map.is-in .cam:nth-child(2n) .cam__halo{animation-delay:.8s}.map.is-in .cam:nth-child(3n) .cam__halo{animation-delay:1.4s}
 @keyframes camHalo{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.4);opacity:0}}
-.map__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.map__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
 .map__stats div{display:flex;align-items:baseline;gap:10px}
 .map__stats b{font-family:var(--font-h);font-size:32px;color:var(--green);letter-spacing:-.03em}
 .map__stats span{color:var(--gray);font-size:14px}
