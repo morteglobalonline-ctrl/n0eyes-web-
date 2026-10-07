@@ -72,7 +72,8 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 oynatımı. `js/fabrika.js` (kütüphane yok, canvas) → `<figure class="fab" data-json="assets/data/...json">`.
 Veri: n0eyes deposunda `tools/site_iz_disa.py` (şema v1: `kaynak` · `bolgeler` 0-1 poligon · `izler` p=[t sn, x, y, w, h] kutu merkezi/boyutu 0-1 ·
 `alarm` (geri_bildirim dogru|normal → Doğru, kisi_yok|yanlis → Yanlış) · `isi` günlük ızgara · opsiyonel `zemin` = çizgi çizimi dosyası, JSON'a göre yol;
-yoksa soyut ızgara). Komut ve git sürümü JSON'un `kaynak` alanında.
+yoksa soyut ızgara). Sahne en-boyu: `zemin` görselinin doğal oranı, yoksa 16:9 (`kaynak.kare` 704×576 alt akış ANAMORFİK, kullanılmaz).
+Komut ve git sürümü JSON'un `kaynak` alanında.
 **`assets/data/fabrika_sentetik.json` SENTETİKTİR** (`kaynak.sentetik: true` → köşe rozeti "SENTETİK ÖRNEK VERİ · YAYIN İÇİN DEĞİL");
 gerçek JSON gelince dosya ve `data-json` değişir. Sayı şeridi yalnız kaynaklı sayılar (K-69, OLCUMLER §43, §6, JSON'un kendisi).
 Test kancası: `?ft=412` → o saniyede sabit kare (`prefers-reduced-motion` ile aynı yol: tüm iz yolları soluk, ısı haritası tam).

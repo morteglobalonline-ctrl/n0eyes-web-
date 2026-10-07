@@ -154,9 +154,10 @@
     try { veri = await (await fetch(fig.dataset.json)).json(); } catch { return; }
     if (veri.surum !== 1 || !Array.isArray(veri.izler)) { console.warn('fabrika: desteklenmeyen sema', veri.surum); veri = null; return; }
     veri.izler = veri.izler.filter(z => z.p && z.p.length);
-    sahne.style.aspectRatio = (veri.kaynak.kare || [704, 576]).join('/');
     if (tespitSay) tespitSay.textContent = veri.izler.reduce((s, z) => s + z.p.length, 0).toLocaleString(I18N.lang === 'tr' ? 'tr-TR' : 'en-US');
     if (veri.zemin) zemin = await new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = new URL(veri.zemin, new URL(fig.dataset.json, location.href)).href; });
+    // en-boy: zemin cizgi ciziminin dogal orani, yoksa 16:9 — kaynak.kare (704x576 alt akis) ANAMORFIK, gercek goruntu 16:9; x,y zaten 0-1
+    sahne.style.aspectRatio = zemin ? `${zemin.naturalWidth}/${zemin.naturalHeight}` : '16/9';
     isiHazirla(); cipKur(); olcekle(); basla();
     if (!sabit) domGuncelle(0, ciz(0, false));
   };
