@@ -87,12 +87,11 @@ window.I18N = (() => {
     [`DİNLENME`, `BREAK AREA`], [`kapsam dışı`, `out of scope`], [`n0eyes bilgisayarı`, `n0eyes computer`],
     [`CAM 5 · Otopark`, `CAM 5 · Car park`], [`CAM 1 · Avlu`, `CAM 1 · Yard`], [`CAM 3 · Depo içi`, `CAM 3 · Warehouse`], [`CAM 6 · Raf koridoru`, `CAM 6 · Rack aisle`],
     [`CAM 2 · Rampa`, `CAM 2 · Dock`], [`CAM 4 · Yükleme`, `CAM 4 · Loading`], [`CAM 7 · Hat başı`, `CAM 7 · Line head`], [`CAM 8 · Ofis girişi`, `CAM 8 · Office entrance`],
-    [`kamera bağlı`, `cameras connected`], [`yeni kamera`, `new cameras`], [`buluta yüklenen kayıt`, `recordings uploaded to the cloud`],
+    [`kamera bağlı`, `cameras connected`], [`yeni kamera`, `new cameras`],
     // gizlilik
     [`GİZLİLİK VE KVKK`, `PRIVACY & GDPR`],
     [`"Kaydın senin <span class="g">binanda işleniyor.</span>"`, `"Your footage is <span class="g">processed in your building."</span>`],
     [`Kimlik, biyometri ve çalışan performansı hassas alanlardır. n0eyes bunu mimarinin en başına koyar: işleme ve kayıt kutuda yapılır; canlı izleme ve kanıt yalnız yetkili telefona, uçtan uca şifreli gelir.`, `Identity, biometrics and employee performance are sensitive. n0eyes builds that in from the start: processing and storage happen on the box; live view and evidence reach only authorised phones, end-to-end encrypted.`],
-    [`Görüntü fabrikadaki kutuda işlenir ve saklanır; buluta yüklenmez.`, `Video is processed and stored on the box in your facility; it is not uploaded to the cloud.`],
     [`Gerçek isim sisteme hiç girmez. Yüz tanıma yok, duygu tanıma yok.`, `Real names never enter the system. No face recognition, no emotion recognition.`],
     [`Yemekhane, dinlenme ve sigara alanları analiz kapsamı dışıdır.`, `Canteens, break rooms and smoking areas are out of scope.`],
     [`Kişi bazlı "verim notu" üretilmez; ölçüm hat ve bölge bazındadır.`, `No per-person "productivity score"; measurement is per line and zone.`],
