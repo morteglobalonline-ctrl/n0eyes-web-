@@ -20,7 +20,7 @@ window.I18N = (() => {
     [`SINIF`, `CLASSES`],
     [`Tanıma`, `Recognition`], [`Neleri ayırt eder?`, `What can it tell apart?`],
     // nav
-    [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`], [`Dünya`, `World`],
+    [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`],
     [`Yetenekler`, `Capabilities`], [`Tesis`, `Facility`], [`Pilot`, `Pilot`], [`Demo Talep Et`, `Request a Demo`],
     // hero
     [`NASIL ANALİZ EDER`, `HOW IT ANALYSES`], [`ÖRNEK KAYIT`, `RECORDED SAMPLE`],
@@ -59,14 +59,6 @@ window.I18N = (() => {
     [`Kimlik verisi tutulmaz`, `No identity data`], [`İşleme tesiste`, `Processed on-site`],
     [`kesintisiz izleme · gece görüşü dahil`, `continuous watch · night vision included`],
     [`ayırt edilen sınıf · insan, araç, ekipman`, `classes told apart · people, vehicles, equipment`],
-    // dünya
-    [`DÜNYANIN HER YERİNDEN · AYNI MOTOR`, `ANYWHERE IN THE WORLD · SAME ENGINE`],
-    [`Londra'dan Tokyo'ya, <span class="g">aynı gözle.</span>`, `From London to Tokyo, <span class="g">the same eye.</span>`],
-    [`Halka açık şehir kameralarından alınmış görüntüler; kutular ve sayaçlar n0eyes'ın kendi tespit motorundan (yolo11n + ByteTrack) önceden çıkarıldı, videoyla eş zamanlı çiziliyor. Kişi, araç, motosiklet — kamera neyi görüyorsa.`,
-     `Clips from public city cameras; boxes and counters come from n0eyes' own detection engine (yolo11n + ByteTrack), pre-computed and drawn in sync with the video. People, vehicles, motorcycles — whatever the camera sees.`],
-    [`LONDRA · Abbey Road`, `LONDON · Abbey Road`], [`BANGKOK · Soi 11`, `BANGKOK · Soi 11`], [`DUBLIN · Temple Bar`, `DUBLIN · Temple Bar`], [`TOKYO · Shibuya Kavşağı`, `TOKYO · Shibuya Crossing`],
-    [`kişi`, `people`], [`araç`, `vehicles`],
-    [`Görüntüler halka açık yayınlardan alınmış kısa örneklerdir; kimlik verisi tutulmaz, yüzler işlenmez.`, `Short samples from public streams; no identity data is kept, faces are not processed.`],
     // yetenekler
     [`ANA YETENEKLER`, `CORE CAPABILITIES`],
     [`İnsanı değil, <span class="g">akışı ve olayı</span> takip ediyoruz.`, `We track <span class="g">flow and events,</span> not individuals.`],
