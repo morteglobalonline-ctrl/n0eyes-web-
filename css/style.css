@@ -274,17 +274,6 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .fab__cip i{font-style:normal;font-size:10px;letter-spacing:.12em;color:var(--gray)}
 .fab__cip b{font-size:16px;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
 .fab__cip--yasak{border-color:rgba(255,106,61,.45)}.fab__cip--yasak b{color:var(--warn)}
-.fab__alarm{position:absolute;left:50%;top:14%;transform:translateX(-50%);width:min(290px,82%);background:rgba(16,18,21,.93);border:1px solid rgba(255,106,61,.65);border-radius:14px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.5);backdrop-filter:blur(8px);animation:fabBalon .35s var(--ease)}
-.fab__alarm[hidden]{display:none}
-.fab__alarm b{display:block;font-family:var(--font-h);font-size:13px;font-weight:600;color:var(--white)}
-.fab__gb{display:flex;gap:8px;margin:10px 0 8px}
-.fab__gb span{flex:1;text-align:center;font-family:var(--font-h);font-size:12px;font-weight:600;padding:7px 0;border-radius:999px;border:1px solid var(--line2);color:var(--gray)}
-.fab__gb .is-on{background:var(--green);border-color:var(--green);color:#052614}
-.fab__gb .is-yan{background:var(--warn);border-color:var(--warn);color:#2a0d03}
-.fab__alarm small{display:block;font-size:11px;line-height:1.4;color:var(--gray)}
-.fab__alarm.is-yer{transform:none;animation-name:fabBalonO}
-@keyframes fabBalonO{from{opacity:0}to{opacity:1}}
-@keyframes fabBalon{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
 .fab__alt{margin:14px auto 0;max-width:80ch;font-size:13px;color:var(--gray);text-align:center}
 .fab-serit{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
 .fab-serit p{font-size:14px;line-height:1.5;color:var(--gray)}
@@ -457,7 +446,6 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .fab__sahne{overflow:visible;clip-path:none;margin-bottom:44px}.fab__sahne canvas{border-radius:18px}   /* 16:9 sahne ~190 px: cipler sahnenin ALTINA, tek satir */
   .fab__bolgeler{top:calc(100% + 8px);bottom:auto;left:0;right:0;gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.fab__bolgeler::-webkit-scrollbar{display:none}
   .fab__cip{flex:none;padding:4px 7px;gap:6px}.fab__cip i{font-size:8.5px}.fab__cip b{font-size:13px}
-  .fab__alarm{padding:7px 9px;width:min(210px,64%)}.fab__alarm b{font-size:11px}.fab__gb{margin:6px 0 0;gap:6px}.fab__gb span{font-size:10.5px;padding:4px 0}.fab__alarm small{display:none}
   .fab-serit{grid-template-columns:1fr;gap:14px;margin-top:28px;padding-top:20px}
   /* intro: küçük ekran */
   .intro__brand .brand__word{height:22px}.intro__brand .brand__mark{height:28px}

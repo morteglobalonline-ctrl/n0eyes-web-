@@ -70,8 +70,8 @@ window.I18N = (() => {
     // fabrika (#79; metinler Morte önerisi, Haqd onayına)
     [`Fabrika`, `Factory`],
     [`Gerçek fabrika. Gerçek tespitler. <span class="g">Görüntü yok.</span>`, `A real factory. Real detections. <span class="g">No footage.</span>`],
-    [`Bir tekstil fabrikasında n0eyes'ın kaydettiği gerçek tespitlerden üretildi. İnsanlar nokta, araçlar farklı renkte iz olarak gösterilir; yüz ve görüntü yoktur.`,
-     `Generated from real detections n0eyes recorded in a textile factory. People appear as dots, vehicles as tracks in a different colour; no faces, no footage.`],
+    [`Bir tekstil fabrikasında n0eyes'ın kaydettiği gerçek tespitlerden üretildi. İnsanlar nokta ve iz olarak gösterilir; yüz ve görüntü yoktur.`,
+     `Generated from real detections n0eyes recorded in a textile factory. People appear as dots and tracks; no faces, no footage.`],
     [`Kutu başına <b>24 kamera</b>`, `<b>24 cameras</b> per box`],
     [`Sor n0eyes: test setinde <b>50 sorudan 45 doğru, 0 uydurma</b>`, `Ask n0eyes: <b>45 of 50 correct, 0 made-up answers</b> on our test set`],
     [`Bu gösterimdeki tespit sayısı`, `Detections in this demo`],
@@ -142,8 +142,7 @@ window.I18N = (() => {
     tr: {
       captions: ['Kamera zaten orada.', 'n0eyes onu görmeye başlar.', 'Depo. Liman. Sevkiyat.', 'Hastane. Kafe. Mağaza.', 'Tek görüş. Her ortam.'],
       etiket: ['İNSAN', 'ARAÇ', 'MOTOR', 'GEMİ'],
-      fabrika: { rozet: 'KAYITTAN · GÖRÜNTÜSÜZ', sentetik: 'SENTETİK ÖRNEK VERİ · YAYIN İÇİN DEĞİL', kisi: 'KİŞİ', arac: 'ARAÇ',
-                 tur: { yasak_bolge: 'Yasak bölgede kişi' }, dogru: 'Doğru', yanlis: 'Yanlış', not: 'Sahip her uyarıyı işaretler, sistem buna göre keskinleşir.' },
+      fabrika: { rozet: 'KAYITTAN · GÖRÜNTÜSÜZ', sentetik: 'SENTETİK ÖRNEK VERİ · YAYIN İÇİN DEĞİL', kisi: 'KİŞİ', arac: 'ARAÇ' },
       events: [['Rampa dolu', "Kasa kamyon rampada · 09:19'dan beri"], ['Boşaltma sürüyor', 'Kumaş topu → kafes araba döngüsü'], ['Bekleme', '4/5 kişi hareketsiz · 20 sn'], ['Akış normale döndü', '3/4 kişi aktif'], ['İş güvenliği notu', 'Kasa üstünde kişi · yüksekte çalışma'], ['Sayım', '28 adam-dk · %46 hareketsiz (pencere)']],
       recoLabels: ['KONTEYNER GEMİSİ', 'TEKNE', 'KAMYON', 'FORKLİFT', 'AMBULANS', 'OTOMOBİL', 'MOTOSİKLET', 'İNSAN', 'DOKTOR', 'GÜVENLİK GÖREVLİSİ', 'KAFE PERSONELİ', 'TEKERLEKLİ SANDALYE', 'BEBEK ARABASI', 'KÖPEK'],
       recoGroups: [
@@ -176,8 +175,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.`,
     en: {
       captions: ['The camera is already there.', 'n0eyes starts to see.', 'Warehouse. Port. Shipping.', 'Hospital. Café. Store.', 'One vision. Every environment.'],
       etiket: ['PERSON', 'VEHICLE', 'MOTO', 'SHIP'],
-      fabrika: { rozet: 'FROM RECORDED DATA · NO FOOTAGE', sentetik: 'SYNTHETIC SAMPLE DATA · NOT FOR RELEASE', kisi: 'PEOPLE', arac: 'VEHICLES',
-                 tur: { yasak_bolge: 'Person in restricted zone' }, dogru: 'Correct', yanlis: 'Wrong', not: 'The owner marks every alert; the system sharpens with it.' },
+      fabrika: { rozet: 'FROM RECORDED DATA · NO FOOTAGE', sentetik: 'SYNTHETIC SAMPLE DATA · NOT FOR RELEASE', kisi: 'PEOPLE', arac: 'VEHICLES' },
       events: [['Dock occupied', 'Box truck at the dock · since 09:19'], ['Unloading in progress', 'Fabric roll → cage trolley cycle'], ['Idle', '4/5 people idle · 20 s'], ['Flow back to normal', '3/4 people active'], ['Safety note', 'Person on truck bed · working at height'], ['Count', '28 man-min · 46% idle (window)']],
       recoLabels: ['CARGO SHIP', 'YACHT', 'TRUCK', 'FORKLIFT', 'AMBULANCE', 'CAR', 'MOTORCYCLE', 'PERSON', 'DOCTOR', 'SECURITY GUARD', 'CAFÉ STAFF', 'WHEELCHAIR', 'STROLLER', 'DOG'],
       recoGroups: [

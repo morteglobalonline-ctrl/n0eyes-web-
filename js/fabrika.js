@@ -1,11 +1,12 @@
 /* n0eyes — #79 fabrika canlandırması: gerçek izlerin GÖRÜNTÜSÜZ oynatımı (şema v1, n0eyes deposu tools/site_iz_disa.py).
-   Kütüphane yok. JSON: kaynak · bolgeler (0-1 poligon) · izler (p = [t sn, x, y, w, h], kutu merkezi/boyutu 0-1) · alarm · isi.
+   Kütüphane yok. JSON: kaynak · bolgeler (0-1 poligon) · izler (p = [t sn, x, y, w, h], kutu merkezi/boyutu 0-1) · isi.
+   `alarm` OKUNMAZ: uyarı balonu kalıcı olarak yok (Coordinator n0eyes#80 — halka açık dosya fabrikadan OLAY göstermez).
    Zemin: JSON'da "zemin" (çizgi çizimi dosyası, JSON'a göre yol) varsa o, yoksa soyut ızgara. Metinler I18N.t('fabrika').
    Test kancası: ?ft=412 → o saniyede sabit kare (azaltılmış hareket ile aynı yol). */
 (() => {
   const bolum = document.getElementById('fabrika'); if (!bolum) return;
   const fig = bolum.querySelector('.fab'), sahne = fig.querySelector('.fab__sahne'), cv = sahne.querySelector('canvas'), cx = cv.getContext('2d');
-  const rozet = fig.querySelector('.fab__rozet'), saat = fig.querySelector('.fab__saat'), cipler = fig.querySelector('.fab__bolgeler'), balon = fig.querySelector('.fab__alarm');
+  const rozet = fig.querySelector('.fab__rozet'), saat = fig.querySelector('.fab__saat'), cipler = fig.querySelector('.fab__bolgeler');
   const tespitSay = bolum.querySelector('#fabTespit');
   const ft = new URLSearchParams(location.search).get('ft');
   const sabit = matchMedia('(prefers-reduced-motion: reduce)').matches || ft !== null;
@@ -68,11 +69,6 @@
     const isiA = sabit ? 1 : .25 + .75 * (t / veri.kaynak.sure_sn);     // gün boyu biriken: döngü ilerledikçe koyulaşır
     cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high'; cx.globalAlpha = isiA;
     Object.values(isiCv).forEach(c => cx.drawImage(c, 0, 0, W, H)); cx.globalAlpha = 1;
-    const al = veri.alarm, alAktif = al && t >= al.t && t <= al.t + Math.max(al.sure_sn || 0, 1);
-    if (alAktif) (veri.bolgeler || []).filter(yasakMi).forEach((b) => {
-      cx.beginPath(); b.poligon.forEach(([x, y], i) => i ? cx.lineTo(x * W, y * H) : cx.moveTo(x * W, y * H)); cx.closePath();
-      cx.fillStyle = `rgba(${TURUNCU},${.08 + .06 * Math.sin(performance.now() / 180)})`; cx.fill(); cx.strokeStyle = `rgba(${TURUNCU},.85)`; cx.lineWidth = 1.6 * dpr; cx.stroke();
-    });
     const say = { kisi: 0, arac: 0, b: (veri.bolgeler || []).map(() => 0) };
     cx.lineCap = 'round'; cx.lineJoin = 'round';
     veri.izler.forEach((z) => {
@@ -102,7 +98,7 @@
       }
       (veri.bolgeler || []).forEach((b, bi) => { if (b.poligon && icinde(x, y, b.poligon)) say.b[bi]++; });
     });
-    return { say, alAktif };
+    return { say };
   };
 
   /* ---- HUD (DOM, ~5 Hz) ---- */
@@ -111,27 +107,11 @@
     cipler.innerHTML = [`<span class="fab__cip"><i>${m.kisi}</i><b data-k="kisi">0</b></span>`, `<span class="fab__cip"><i>${m.arac}</i><b data-k="arac">0</b></span>`]
       .concat((veri.bolgeler || []).map((b, i) => `<span class="fab__cip${yasakMi(b) ? ' fab__cip--yasak' : ''}"><i>${kac(bolgeAd(b))}</i><b data-b="${i}">0</b></span>`)).join('');
     rozet.textContent = veri.kaynak.sentetik ? m.sentetik : m.rozet; rozet.classList.toggle('is-sentetik', !!veri.kaynak.sentetik);
-    const al = veri.alarm;
-    if (al) {
-      const gb = al.geri_bildirim, ok = gb === 'dogru' || gb === 'normal', yan = gb === 'kisi_yok' || gb === 'yanlis';
-      balon.innerHTML = `<b>${m.tur[al.tur] || kac(adBicim(al.tur || ''))} · ${saatBicim(basSn() + al.t).slice(0, 5)}</b>`
-        + `<span class="fab__gb"><span class="${ok ? 'is-on' : ''}">${ok ? '✓ ' : ''}${m.dogru}</span><span class="${yan ? 'is-on is-yan' : ''}">${yan ? '✓ ' : ''}${m.yanlis}</span></span><small>${m.not}</small>`;
-    }
-  };
-  const balonYer = () => {                         // balon yasak bolgenin YANINA (olayi ortmesin), sahne ve ust cubuk icinde kalir
-    const y = (veri.bolgeler || []).find(yasakMi); if (!y || balon.hidden) return;
-    const sw = sahne.clientWidth, sh = sahne.clientHeight, bw = balon.offsetWidth, ust = fig.querySelector('.fab__top');
-    const xs = y.poligon.map(q => q[0]), sag = (Math.min(...xs) + Math.max(...xs)) / 2 > .5;
-    const x = sag ? Math.min(...xs) * sw - bw - 14 : Math.max(...xs) * sw + 14;
-    balon.style.left = `${Math.max(8, Math.min(x, sw - bw - 8))}px`;
-    balon.style.top = `${Math.max(Math.min(...y.poligon.map(q => q[1])) * sh, ust.offsetTop + ust.offsetHeight + 8)}px`;
-    balon.classList.add('is-yer');
   };
   const domGuncelle = (t, r) => {
     saat.textContent = saatBicim(basSn() + t);
     cipler.querySelectorAll('b[data-k]').forEach(el => { el.textContent = r.say[el.dataset.k]; });
     cipler.querySelectorAll('b[data-b]').forEach(el => { el.textContent = r.say.b[+el.dataset.b]; });
-    balon.hidden = !r.alAktif; balonYer();
   };
 
   /* ---- döngü ---- */
@@ -140,11 +120,10 @@
     W = cv.width = Math.max(1, Math.round(r.width * dpr)); H = cv.height = Math.max(1, Math.round(r.height * dpr));
     if (veri) { zeminCiz(); if (sabit) sabitCiz(); }
   };
-  const sabitCiz = () => { const t0 = ft !== null ? +ft : veri.alarm ? veri.alarm.t + 2 : veri.kaynak.sure_sn / 2; domGuncelle(t0, ciz(t0, true)); };
+  const sabitCiz = () => { const t0 = ft !== null ? +ft : veri.kaynak.sure_sn / 2; domGuncelle(t0, ciz(t0, true)); };
   const adim = (now) => {
     const dt = Math.min(.1, (now - (son || now)) / 1000); son = now;
-    const S = veri.kaynak.sure_sn, al = veri.alarm, taban = Math.max(1, S / 70);
-    const hedef = al && t >= al.t - 6 && t <= al.t + Math.max(al.sure_sn || 0, 8) ? Math.min(taban, 3) : taban;   // alarm anında yavaşla
+    const S = veri.kaynak.sure_sn, hedef = Math.max(1, S / 70);
     hiz += (hedef - hiz) * Math.min(1, dt * 3); t += dt * hiz; if (t > S) t = 0;
     const r = ciz(t, false);
     if (now - sonDom > 200) { sonDom = now; domGuncelle(t, r); }

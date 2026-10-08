@@ -71,11 +71,11 @@ Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230`
 Üçüncü taraf sokak videolarının (Dünya akışı) yerine: gerçek bir tekstil fabrikasında n0eyes'ın **gerçek tespitlerinin görüntüsüz**
 oynatımı. `js/fabrika.js` (kütüphane yok, canvas) → `<figure class="fab" data-json="assets/data/...json">`.
 Veri: n0eyes deposunda `tools/site_iz_disa.py` (şema v1: `kaynak` · `bolgeler` 0-1 poligon · `izler` p=[t sn, x, y, w, h] kutu merkezi/boyutu 0-1 ·
-`alarm` (geri_bildirim dogru|normal → Doğru, kisi_yok|yanlis → Yanlış) · `isi` günlük ızgara · opsiyonel `zemin` = çizgi çizimi dosyası, JSON'a göre yol;
+`alarm` (sitede OKUNMAZ: uyarı balonu kalıcı olarak yok — Coordinator n0eyes#80, halka açık dosya fabrikadan OLAY göstermez; araç hep null yazar) · `isi` günlük ızgara · opsiyonel `zemin` = çizgi çizimi dosyası, JSON'a göre yol;
 yoksa soyut ızgara). Sahne en-boyu: `zemin` görselinin doğal oranı, yoksa 16:9 (`kaynak.kare` 704×576 alt akış ANAMORFİK, kullanılmaz).
 Komut ve git sürümü JSON'un `kaynak` alanında.
 **Gerçek veri (8 Eki):** `assets/data/fabrika_nvr2_k17.json` — NVR2_K17 (dokuma/makine koridoru), 7 Eki 15:00–15:15, 43 iz / 2.644 nokta,
-yalnız `insan`, `alarm: null` (sitede olay yok → Doğru/Yanlış balonu hiç açılmaz), `bolgeler` boş. Üretim: n0eyes#80 aracı (`kaynak.git` b766df93),
+yalnız `insan`, `alarm: null`, `bolgeler` boş. Alt yazı (Morte, 8 Eki): "İnsanlar nokta ve iz olarak gösterilir" (bu veride araç yok). Üretim: n0eyes#80 aracı (`kaynak.git` b766df93),
 kutudan salt-okuma çekilmiş satırlarla; komut `kaynak.komut`'ta. Ana depodaki JSON'a dokunulmadı; yalnız bu kopyaya `"zemin"` eklendi.
 Zemin: `assets/img/fabrika_zemin_nvr2_k17.png` — 640×360 (16:9), şeffaf, tek renk beyaz çizgi; meta veri yok (PNG'de yalnız IHDR/IDAT/IEND);
 OSD saat damgası ve sağ-alt belirsiz şekil silinmiş; fotoğraf ve tanınır insan yok. Rozet sentetik değil ("KAYITTAN · GÖRÜNTÜSÜZ").
