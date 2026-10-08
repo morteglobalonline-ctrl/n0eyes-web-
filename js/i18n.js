@@ -16,7 +16,7 @@ window.I18N = (() => {
     [`Hepsini görür. <span class="g">Hangisi olduğunu bilir.</span>`, `It sees them all. <span class="g">It knows which is which.</span>`],
     [`SINIFLANDIRMA`, `CLASSIFICATION`], [`<span class="dot"></span>SINIFLANDIRMA`, `<span class="dot"></span>CLASSIFICATION`],
     [`SINIF`, `CLASSES`],
-    [`Tanıma`, `Recognition`],
+    [`Tanıma`, `Recognition`], [`Bir kamera için hepsi hareket eden bir lekedir. n0eyes insanı araçtan, kamyonu otomobilden ve motosikletten ayırır.`, `To a plain camera they are all just moving shapes. n0eyes tells a person from a vehicle, and a truck from a car or a motorcycle.`],
     // nav
     [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`], [`Dünya`, `World`],
     [`Yetenekler`, `Capabilities`], [`Tesis`, `Facility`], [`Pilot`, `Pilot`], [`Demo Talep Et`, `Request a Demo`],
@@ -117,7 +117,7 @@ window.I18N = (() => {
       recoLabels: ['KONTEYNER GEMİSİ', 'TEKNE', 'KAMYON', 'FORKLİFT', 'AMBULANS', 'OTOMOBİL', 'MOTOSİKLET', 'İNSAN', 'DOKTOR', 'GÜVENLİK GÖREVLİSİ', 'KAFE PERSONELİ', 'TEKERLEKLİ SANDALYE', 'BEBEK ARABASI', 'KÖPEK'],
       recoGroups: [
         [0.00, 'DENİZ TAŞITLARI', 'Konteyner gemisi mi, tekne mi? Biri limanın iş yükü, diğeri bir ziyaret. Aynı silüet, bambaşka operasyon.'],
-        [0.216, 'AĞIR ARAÇ', 'Kamyon rampaya yanaşır ve sayaç başlar; forklift insan yolundaysa bu bir iş güvenliği olayıdır.'],
+        [0.216, 'AĞIR ARAÇ', 'Kamyon rampaya yanaşır ve sayaç başlar; insan araç yolundaysa bu bir iş güvenliği olayıdır.'],
         [0.36, 'ACİL VE TRAFİK', 'Ambulans bir olaydır, otomobil bir ziyaret, motosiklet bir kurye. Sınıf değişince kural da değişir.'],
         [0.577, 'İNSAN VE ROL', 'Herkes “insan” değildir: doktor, güvenlik görevlisi, kafe personeli. Üniforma rolü söyler, rol de neyin normal olduğunu.'],
         [0.81, 'HASSAS NESNELER', 'Tekerlekli sandalye, bebek arabası, köpek — öncelik, erişim ve güvenlik kuralları bunlara göre şekillenir.'],
@@ -149,7 +149,7 @@ Toplam 5 olay. Kimlik verisi tutulmaz.`,
       recoLabels: ['CARGO SHIP', 'YACHT', 'TRUCK', 'FORKLIFT', 'AMBULANCE', 'CAR', 'MOTORCYCLE', 'PERSON', 'DOCTOR', 'SECURITY GUARD', 'CAFÉ STAFF', 'WHEELCHAIR', 'STROLLER', 'DOG'],
       recoGroups: [
         [0.00, 'VESSELS', 'Cargo ship or yacht? One is the port’s workload, the other a visit. Same silhouette, a whole different operation.'],
-        [0.216, 'HEAVY VEHICLES', 'A truck docks and the clock starts; a forklift in a walkway is a safety event.'],
+        [0.216, 'HEAVY VEHICLES', 'A truck docks and the clock starts; a person in a vehicle lane is a safety event.'],
         [0.36, 'EMERGENCY & TRAFFIC', 'An ambulance is an incident, a car is a visit, a motorcycle is a courier. Change the class and the rule changes with it.'],
         [0.577, 'PEOPLE & ROLES', 'Not everyone is just “a person”: doctor, security guard, café staff. The uniform tells the role — the role tells what’s normal.'],
         [0.81, 'SENSITIVE OBJECTS', 'Wheelchair, stroller, dog — priority, access and safety rules are shaped around these.'],
