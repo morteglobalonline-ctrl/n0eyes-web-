@@ -24,7 +24,7 @@
   <meta name="theme-color" content="#0A0A0A">
   <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <link rel="stylesheet" href="css/fonts.css?v=20261008a">
-  <link rel="stylesheet" href="css/style.css?v=20261008e">
+  <link rel="stylesheet" href="css/style.css?v=20261008f">
 </head>
 <body>
 
@@ -78,6 +78,7 @@
       <a href="#urun">Ürün</a>
       <a href="#tanima">Tanıma</a>
       <a href="#canli">Nasıl Analiz Eder</a>
+      <a href="#fabrika">Fabrika</a>
       <a href="#yetenekler">Yetenekler</a>
       <a href="#tesis">Tesis</a>
       <a href="#pilot">Pilot</a>
@@ -227,6 +228,31 @@
     <div class="stats reveal">
       <div class="stat"><b data-sabit="7/24">7/24</b><span>kesintisiz izleme · gece görüşü dahil</span></div>
       <div class="stat"><b data-count="14">0</b><span>ayırt edilen sınıf · insan, araç, ekipman</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FABRİKA (#79: gerçek izlerin görüntüsüz canlandırması; veri: n0eyes tools/site_iz_disa.py → assets/data) ================= -->
+<section class="section" id="fabrika">
+  <div class="container">
+    <div class="section__head reveal">
+      <h2>Gerçek fabrika. Gerçek tespitler. <span class="g">Görüntü yok.</span></h2>
+    </div>
+    <figure class="fab reveal" data-json="assets/data/fabrika_nvr2_k17.json">
+      <div class="fab__sahne">
+        <canvas aria-hidden="true"></canvas>
+        <div class="fab__hud" aria-hidden="true">
+          <i class="hud__c hud__c--tl"></i><i class="hud__c hud__c--tr"></i><i class="hud__c hud__c--bl"></i><i class="hud__c hud__c--br"></i>
+          <div class="fab__top"><span class="fab__rozet"></span><span class="fab__saat">--:--:--</span></div>
+          <div class="fab__bolgeler"></div>
+        </div>
+      </div>
+      <figcaption class="fab__alt">Bir tekstil fabrikasında n0eyes'ın kaydettiği gerçek tespitlerden üretildi. İnsanlar nokta ve iz olarak gösterilir; yüz ve görüntü yoktur.</figcaption>
+    </figure>
+    <div class="fab-serit reveal">
+      <p><span>Kutu başına <b>24 kamera</b></span></p><!-- kaynak: K-69 -->
+      <p><span>Sor n0eyes: test setinde <b>50 sorudan 45 doğru, 0 uydurma</b></span></p><!-- kaynak: OLCUMLER §102 -->
+      <p><span>Bu gösterimdeki tespit sayısı</span> <b id="fabTespit">—</b></p><!-- kaynak: assets/data JSON -->
     </div>
   </div>
 </section>
@@ -442,8 +468,9 @@
   </div>
 </footer>
 
-<script src="js/i18n.js?v=20261008i" defer></script>
+<script src="js/i18n.js?v=20261008j" defer></script>
 <script src="js/main.js?v=20261008e" defer></script>
+<script src="js/fabrika.js?v=20261008f" defer></script>
 <script src="js/form.js?v=20261008a" defer></script>
 <script src="js/cerez.js?v=20261008a" defer></script>
 </body>
