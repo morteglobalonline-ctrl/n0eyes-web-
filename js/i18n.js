@@ -18,7 +18,7 @@ window.I18N = (() => {
     [`SINIF`, `CLASSES`],
     [`Tanıma`, `Recognition`], [`Bir kamera için hepsi hareket eden bir lekedir. n0eyes insanı araçtan, kamyonu otomobilden ve motosikletten ayırır.`, `To a plain camera they are all just moving shapes. n0eyes tells a person from a vehicle, and a truck from a car or a motorcycle.`],
     // nav
-    [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`],
+    [`Ürün`, `Product`], [`Nasıl Analiz Eder`, `How It Analyses`],
     [`Yetenekler`, `Capabilities`], [`Tesis`, `Facility`], [`Pilot`, `Pilot`], [`Demo Talep Et`, `Request a Demo`],
     // hero
     [`NASIL ANALİZ EDER`, `HOW IT ANALYSES`], [`ÖRNEK KAYIT`, `RECORDED SAMPLE`],
@@ -179,7 +179,7 @@ WORKFORCE
   };
 
   const orig = new WeakMap();      // el -> TR innerHTML
-  const INLINE = new Set(['SPAN', 'B', 'STRONG', 'BR', 'I', 'EM', 'INPUT', 'TEXTAREA']);
+  const INLINE = new Set(['SPAN', 'B', 'STRONG', 'BR', 'I', 'EM', 'INPUT', 'TEXTAREA', 'A']);   // A: bağlantı içeren cümle de tek parça çevrilir (form onayı + KVKK bağlantısı)
   const leafish = (el) => [...el.childNodes].every(n => n.nodeType === 3 || (n.nodeType === 1 && INLINE.has(n.tagName) && leafish(n)));
 
   let lang = 'tr';
