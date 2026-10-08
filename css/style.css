@@ -243,6 +243,30 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
 .stat span{display:block;color:var(--gray);font-size:14px;margin-top:10px;max-width:24ch}
 .stats__note{grid-column:1/-1;font-size:12px;color:var(--gray);opacity:.7;margin-top:8px}
 
+/* fabrika (#79): gerçek izlerin görüntüsüz canlandırması (js/fabrika.js) */
+.fab{margin:0}
+.fab__sahne{position:relative;width:min(100%,calc((100vh - 140px) * 1.78));margin:0 auto;border-radius:18px;overflow:hidden;clip-path:inset(0 round 18px);isolation:isolate;transform:translateZ(0);background:#07090b;border:1px solid var(--line);aspect-ratio:16/9}
+.fab__sahne canvas{position:absolute;inset:0;width:100%;height:100%}
+.fab__hud{position:absolute;inset:0;pointer-events:none}
+.fab__hud .hud__c{width:24px;height:24px}
+.fab__hud .hud__c--tl{top:14px;left:14px}.fab__hud .hud__c--tr{top:14px;right:14px}
+.fab__hud .hud__c--bl{bottom:14px;left:14px}.fab__hud .hud__c--br{bottom:14px;right:14px}
+.fab__top{position:absolute;top:20px;left:50px;right:50px;display:flex;align-items:center;gap:12px;font-family:var(--font-h);font-size:11px;letter-spacing:.14em}
+.fab__rozet{display:inline-flex;align-items:center;background:rgba(10,10,10,.7);border:1px solid rgba(0,232,122,.4);color:var(--green);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.fab__rozet:empty{display:none}
+.fab__rozet.is-sentetik{color:var(--warn);border-color:rgba(255,106,61,.6)}
+.fab__saat{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--white);background:rgba(10,10,10,.6);padding:6px 10px;border-radius:8px}
+.fab__bolgeler{position:absolute;left:50px;right:50px;bottom:20px;display:flex;flex-wrap:wrap;gap:8px}
+.fab__cip{display:inline-flex;align-items:baseline;gap:8px;background:rgba(10,10,10,.72);border:1px solid var(--line2);border-radius:10px;padding:6px 10px;backdrop-filter:blur(6px);font-family:var(--font-h)}
+.fab__cip i{font-style:normal;font-size:10px;letter-spacing:.12em;color:var(--gray)}
+.fab__cip b{font-size:16px;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+.fab__cip--yasak{border-color:rgba(255,106,61,.45)}.fab__cip--yasak b{color:var(--warn)}
+.fab__alt{margin:14px auto 0;max-width:80ch;font-size:13px;color:var(--gray);text-align:center}
+.fab-serit{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.fab-serit p{font-size:14px;line-height:1.5;color:var(--gray)}
+.fab-serit b{font-family:var(--font-h);font-weight:700;font-size:1.2em;color:var(--green)}
+.fab-serit small{display:inline-block;margin-left:4px;padding:1px 7px;border:1px solid var(--line2);border-radius:999px;font-size:10px;letter-spacing:.08em;color:var(--gray);vertical-align:2px}
+
 /* features */
 .feature{padding:28px 28px 28px 0;border-top:1px solid var(--line);position:relative}
 .feature__n{font-family:var(--font-h);font-size:12px;letter-spacing:.2em;color:var(--green);display:block;margin-bottom:16px}
@@ -400,6 +424,13 @@ body:not(.is-open) .nav{opacity:0;pointer-events:none}
   .hud__c--bl,.hud__c--br{display:none}
   /* canlı analiz sahnesi ve istatistikler */
   .live__stage{aspect-ratio:16/9}.stats{grid-template-columns:1fr 1fr;gap:18px 14px}.stat b{font-size:34px}.stat span{font-size:13px}
+  /* fabrika canlandırması: HUD küçülür, bölge çipleri sahnenin altına */
+  .fab__top{top:10px;left:10px;right:10px;gap:8px;font-size:8.5px;letter-spacing:.06em}.fab__rozet{padding:4px 8px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fab__saat{padding:4px 7px}
+  .fab__hud .hud__c{display:none}
+  .fab__sahne{overflow:visible;clip-path:none;margin-bottom:44px}.fab__sahne canvas{border-radius:18px}   /* 16:9 sahne ~190 px: cipler sahnenin ALTINA, tek satir */
+  .fab__bolgeler{top:calc(100% + 8px);bottom:auto;left:0;right:0;gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.fab__bolgeler::-webkit-scrollbar{display:none}
+  .fab__cip{flex:none;padding:4px 7px;gap:6px}.fab__cip i{font-size:8.5px}.fab__cip b{font-size:13px}
+  .fab-serit{grid-template-columns:1fr;gap:14px;margin-top:28px;padding-top:20px}
   /* intro: küçük ekran */
   .intro__brand .brand__word{height:22px}.intro__brand .brand__mark{height:28px}
   .intro__caption{font-size:clamp(17px,5vw,22px);bottom:20vh}
