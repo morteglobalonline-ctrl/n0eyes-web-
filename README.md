@@ -75,7 +75,7 @@ Veri: n0eyes deposunda `tools/site_iz_disa.py` (şema v1: `kaynak` · `bolgeler`
 yoksa soyut ızgara). Sahne en-boyu: `zemin` görselinin doğal oranı, yoksa 16:9 (`kaynak.kare` 704×576 alt akış ANAMORFİK, kullanılmaz).
 Komut ve git sürümü JSON'un `kaynak` alanında.
 **`assets/data/fabrika_sentetik.json` SENTETİKTİR** (`kaynak.sentetik: true` → köşe rozeti "SENTETİK ÖRNEK VERİ · YAYIN İÇİN DEĞİL");
-gerçek JSON gelince dosya ve `data-json` değişir. Sayı şeridi yalnız kaynaklı sayılar (K-69, OLCUMLER §43, §6, JSON'un kendisi).
+gerçek JSON gelince dosya ve `data-json` değişir. Sayı şeridi yalnız kaynaklı sayılar (K-69, OLCUMLER §102, JSON'un kendisi; kaynak denetimi PR #14 yorumunda).
 Test kancası: `?ft=412` → o saniyede sabit kare (`prefers-reduced-motion` ile aynı yol: tüm iz yolları soluk, ısı haritası tam).
 
 ## Dil (TR / EN)

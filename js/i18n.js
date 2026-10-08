@@ -73,8 +73,7 @@ window.I18N = (() => {
     [`Bir tekstil fabrikasında n0eyes'ın kaydettiği gerçek tespitlerden üretildi. İnsanlar nokta, araçlar farklı renkte iz olarak gösterilir; yüz ve görüntü yoktur.`,
      `Generated from real detections n0eyes recorded in a textile factory. People appear as dots, vehicles as tracks in a different colour; no faces, no footage.`],
     [`Kutu başına <b>24 kamera</b>`, `<b>24 cameras</b> per box`],
-    [`Sor n0eyes: test setinde <b>50 sorudan 47 doğru, 0 uydurma</b>`, `Ask n0eyes: <b>47 of 50 correct, 0 made-up answers</b> on our test set`],
-    [`Boş gece kaydında yanlış alarm: kuralsız <b>1.554 → kuralla 0</b> (30 dk)`, `False alarms on empty night footage: <b>1,554 without rules → 0 with rules</b> (30 min)`],
+    [`Sor n0eyes: test setinde <b>50 sorudan 45 doğru, 0 uydurma</b>`, `Ask n0eyes: <b>45 of 50 correct, 0 made-up answers</b> on our test set`],
     [`Bu gösterimdeki tespit sayısı`, `Detections in this demo`],
     // yetenekler
     [`ANA YETENEKLER`, `CORE CAPABILITIES`],
