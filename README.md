@@ -60,13 +60,6 @@ Alt yazı grupları ve 14 etiketlik şerit `js/i18n.js` → `recoGroups` / `reco
 Kareleri yeniden üretmek: `ffmpeg -i "n0eyes website VD-3.MP4" -vf "fps=12,scale=1600:-2" -q:v 2 /tmp/vd3/f_%04d.jpg`
 → `cwebp -q 76` ile `assets/frames-vd3/`. Kare sayısı değişirse `index.html` → `<canvas data-frames>`.
 
-## Dünya akışı (şehir kameraları)
-`assets/video/sokak/*.mp4` — evo'daki n0eyes panelinin halka açık YouTube canlı yayınlarından (`servis/kameralar_canli.json`)
-24 sn'lik kesitler (Shibuya: youtube dfVK7ld38Ys, panelde yok) (yt-dlp güncel sürümü `/tmp/n0web/ytv` venv'inde; sistemdeki eski). Tespit: `tools/tespit_json.py`
-(yolo11n + ByteTrack, 8 fps örnek) → `assets/data/<ad>.json`; kutular tarayıcıda canvas'a çizilir, id ile yumuşatılır.
-**Telif:** EarthCam vb. yayınlar üçüncü taraf; demo/prototip için uygundur, yayına çıkmadan lisans ya da kendi kamera görüntüsü gerekir.
-Kalabalık ABD gündüzü için evo'da zamanlanmış çekimler: `n0web-cek-1230` / `n0web-cek-1800` (Chicago saati) → `/tmp/n0web/*_HHMM.mp4`.
-
 ## Dil (TR / EN)
 `js/i18n.js`: sözlük **TR innerHTML** ile anahtarlı — HTML'e `data-i18n` eklemeye gerek yok; çalışma anında eşleşen
 öğeler değiştirilir (dinamik sayı içeren öğelerde kelimeler `<span>` içinde olmalı). JS'ten üretilen metinler
@@ -120,6 +113,12 @@ sütunlarından açılır. Her sayfa TR ve EN bloğu içerir (`[data-dil]`), dil
 Şablon ve içerik üretimi: bu sayfalar elle düzenlenebilir düz HTML'dir; ortak stil `css/sayfa.css`, script `js/sayfa.js`.
 **Uyarı:** metinler genel bilgilendirmedir, hukuk danışmanına gözden geçirtilmelidir. Ticari unvan/adres/vergi bilgisi
 eklenecekse KVKK ve Kullanım Koşulları sayfalarına yazılmalı.
+
+## Kaldırılanlar (2026-10-08, telif)
+- **Dünya akışı** (`#dunya`, üçüncü taraf şehir kameraları, halka açık YouTube/EarthCam yayın kesitleri): bölüm, `assets/video/sokak/*.mp4` (5 dosya,
+  ~14 MB) ve `assets/data/{abbey_road,bangkok,dublin,new_orleans,shibuya}.json` SİLİNDİ — statik sitede bağlantısız dosya da URL'den yayında kalır;
+  telif kararı (n0eyes #65, #79; #88 D16) yayından kaldırmayı ister. Yerine gerçek fabrika izlerinin görüntüsüz canlandırması gelir (#79).
+  `tools/tespit_json.py` / `tespit_parcali.py` kaldı (kendi kamera kliplerimiz için yeniden kullanılabilir). Dosyalar git GEÇMİŞİNDE duruyor.
 
 ## Kaldırılanlar (2026-09-25)
 - "Nasıl Çalışır" bölümü → yerine **Tanıma** (VD-3); kurulum hattı da kaldırıldı.
