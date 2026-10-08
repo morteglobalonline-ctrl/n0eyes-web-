@@ -45,7 +45,7 @@ window.I18N = (() => {
     [`KİŞİ`, `PEOPLE`], [`HAREKETSİZ`, `IDLE`], [`RAMPA`, `DOCK`], [`DOLU`, `BUSY`], [`ARAÇ`, `VEHICLE`],
     [`OLAY AKIŞI`, `EVENT FEED`], [`Olaylar video ile eş zamanlı akar…`, `Events stream in sync with the video…`],
     [`Kimlik verisi tutulmaz`, `No identity data`], [`İşleme tesiste`, `Processed on-site`],
-    [`kesintisiz izleme · gece görüşü dahil`, `continuous watch · night vision included`],
+    [`gece gündüz izleme · kameranızın gece görüşüyle`, `around-the-clock watch · with your cameras' night vision`],
     [`ayırt edilen sınıf · insan, araç, ekipman`, `classes told apart · people, vehicles, equipment`],
     // fabrika (#79; metinler Morte önerisi, Haqd onayına)
     [`Fabrika`, `Factory`],
