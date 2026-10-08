@@ -60,7 +60,12 @@ const ilkIsim = (tam) => {
   const p = String(tam || '').trim().split(/\s+/)[0] || '';
   return p ? p.charAt(0).toLocaleUpperCase('tr-TR') + p.slice(1).toLocaleLowerCase('tr-TR') : '';
 };
-const kacis = (x) => String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const kacis = (x) => String(x == null ? '' : x)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#39;');
 
 const MARKA = {
   siyah: '#0A0A0A', grafit: '#1A1D22', yesil: '#00E87A', beyaz: '#FFFFFF', gri: '#A7AFB7', cizgi: '#262B30',
