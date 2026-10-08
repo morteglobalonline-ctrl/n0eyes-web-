@@ -28,6 +28,8 @@
   const basSn = () => { const m = /(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(veri.kaynak.bas_yerel || ''); return m ? +m[1] * 3600 + +m[2] * 60 + +(m[3] || 0) : 0; };
   const yasakMi = (b) => /yasak/i.test(b.tip || '');
   const adBicim = (s) => String(s).replace(/_/g, ' ').toUpperCase();   // adlar ASCII katlanmis (hatti → HATTI; tr yerel ayari HATTİ yapardi)
+  const bolgeAd = (b) => adBicim(I18N.lang === 'en' && b.ad_en ? b.ad_en : b.ad);   // JSON'da istege bagli ad_en (yoksa TR ad)
+  const kac = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);   // JSON metni innerHTML'e kacirilarak
 
   /* ---- sabit katmanlar: zemin (çizim ya da ızgara) + bölgeler; ısı haritası (gün) ---- */
   const zeminCiz = () => {
@@ -47,7 +49,7 @@
       z.beginPath(); P.forEach(([x, y], i) => i ? z.lineTo(x * W, y * H) : z.moveTo(x * W, y * H)); z.closePath();
       z.fillStyle = `rgba(${r},.05)`; z.fill(); z.setLineDash([6 * dpr, 5 * dpr]); z.strokeStyle = `rgba(${r},.38)`; z.lineWidth = 1.2 * dpr; z.stroke(); z.setLineDash([]);
       const lx = Math.min(...P.map(q => q[0])), ly = Math.min(...P.map(q => q[1]));     // etiket: bolgenin sol ust kosesi
-      z.fillStyle = `rgba(${r},.75)`; z.fillText(adBicim(b.ad), Math.min(lx * W + 6 * dpr, W - 80 * dpr), Math.max(ly * H - 4 * dpr, 12 * dpr));
+      z.fillStyle = `rgba(${r},.75)`; z.fillText(bolgeAd(b), Math.min(lx * W + 6 * dpr, W - 80 * dpr), Math.max(ly * H - 4 * dpr, 12 * dpr));
     });
   };
   const isiHazirla = () => {
@@ -107,12 +109,12 @@
   const cipKur = () => {
     const m = M();
     cipler.innerHTML = [`<span class="fab__cip"><i>${m.kisi}</i><b data-k="kisi">0</b></span>`, `<span class="fab__cip"><i>${m.arac}</i><b data-k="arac">0</b></span>`]
-      .concat((veri.bolgeler || []).map((b, i) => `<span class="fab__cip${yasakMi(b) ? ' fab__cip--yasak' : ''}"><i>${adBicim(b.ad)}</i><b data-b="${i}">0</b></span>`)).join('');
+      .concat((veri.bolgeler || []).map((b, i) => `<span class="fab__cip${yasakMi(b) ? ' fab__cip--yasak' : ''}"><i>${kac(bolgeAd(b))}</i><b data-b="${i}">0</b></span>`)).join('');
     rozet.textContent = veri.kaynak.sentetik ? m.sentetik : m.rozet; rozet.classList.toggle('is-sentetik', !!veri.kaynak.sentetik);
     const al = veri.alarm;
     if (al) {
       const gb = al.geri_bildirim, ok = gb === 'dogru' || gb === 'normal', yan = gb === 'kisi_yok' || gb === 'yanlis';
-      balon.innerHTML = `<b>${m.tur[al.tur] || adBicim(al.tur || '')} · ${saatBicim(basSn() + al.t).slice(0, 5)}</b>`
+      balon.innerHTML = `<b>${m.tur[al.tur] || kac(adBicim(al.tur || ''))} · ${saatBicim(basSn() + al.t).slice(0, 5)}</b>`
         + `<span class="fab__gb"><span class="${ok ? 'is-on' : ''}">${ok ? '✓ ' : ''}${m.dogru}</span><span class="${yan ? 'is-on is-yan' : ''}">${yan ? '✓ ' : ''}${m.yanlis}</span></span><small>${m.not}</small>`;
     }
   };
