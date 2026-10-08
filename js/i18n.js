@@ -14,11 +14,9 @@ window.I18N = (() => {
     // tanıma (VD-3)
     [`AYNI MOTOR · FARKLI ANLAM`, `ONE ENGINE · MANY MEANINGS`],
     [`Hepsini görür. <span class="g">Hangisi olduğunu bilir.</span>`, `It sees them all. <span class="g">It knows which is which.</span>`],
-    [`Bir kamera için hepsi hareket eden bir lekedir. n0eyes gemiyi tekneden, kamyonu forkliftten, doktoru güvenlik görevlisinden ayırır — çünkü asıl iş görmek değil, neyin nerede ne işe yaradığını bilmek.`,
-     `To a plain camera they are all just moving shapes. n0eyes tells a cargo ship from a yacht, a truck from a forklift, a doctor from a security guard — because the job isn't seeing, it's knowing what a thing is and what it means where it stands.`],
     [`SINIFLANDIRMA`, `CLASSIFICATION`], [`<span class="dot"></span>SINIFLANDIRMA`, `<span class="dot"></span>CLASSIFICATION`],
     [`SINIF`, `CLASSES`],
-    [`Tanıma`, `Recognition`], [`Neleri ayırt eder?`, `What can it tell apart?`],
+    [`Tanıma`, `Recognition`],
     // nav
     [`Ürün`, `Product`], [`Nasıl Çalışır`, `How It Works`], [`Nasıl Analiz Eder`, `How It Analyses`], [`Dünya`, `World`],
     [`Yetenekler`, `Capabilities`], [`Tesis`, `Facility`], [`Pilot`, `Pilot`], [`Demo Talep Et`, `Request a Demo`],
@@ -40,16 +38,6 @@ window.I18N = (() => {
     [`Dağınık görünürlük`, `Scattered visibility`],
     [`Yönetici sahadaki akışı tek ekranda ve ölçülebilir şekilde göremez; kameralar arasında kaybolur.`, `Managers can't see the flow on one screen in measurable terms; they get lost between cameras.`],
     // nasıl
-    [`KURULUM FELSEFESİ`, `INSTALLATION PHILOSOPHY`],
-    [`Mevcut sisteme dokunmadan analiz.`, `Analysis without touching your system.`],
-    [`Kamera / DVR görüntü akışı → ayrı bir n0eyes bilgisayarı → sade bir panel → yönetici aksiyonu. Dört adım, sıfır yeni kamera.`, `Camera / DVR stream → a separate n0eyes computer → a simple dashboard → management action. Four steps, zero new cameras.`],
-    [`Kamera / DVR`, `Camera / DVR`], [`Mevcut görüntü akışı, olduğu gibi alınır.`, `The existing video stream is taken as is.`],
-    [`n0eyes Bilgisayar`, `n0eyes Computer`], [`AI izleme katmanı. Tek GPU'lu küçük masaüstü kutu; işleme ve kayıt kutuda.`, `The AI observation layer. A small single-GPU desktop box; processing and storage on the box.`],
-    [`Dashboard`, `Dashboard`], [`Rapor, uyarı ve zaman çizgisi tek panelde.`, `Reports, alerts and timeline in one panel.`],
-    [`Yönetim`, `Management`], [`Aksiyon ve karar. Sabah brifi, anlık uyarı.`, `Action and decision. Morning brief, instant alerts.`],
-    [`ÖNEMLİ AYRIM`, `KEY DISTINCTION`],
-    [`<strong>n0eyes kamera satıcısı değildir.</strong> İşletmenin kendi kamera düzenini bozmadan, görüntüyü izleyen ve anlamlandıran bağımsız bir AI vision katmanı olarak konumlanır.`,
-     `<strong>n0eyes does not sell cameras.</strong> It is an independent AI vision layer that watches and interprets footage without disturbing your existing camera setup.`],
     // canlı
     [`Bir güvenlik görevlisi gibi <span class="g">ekrandaki görüntüyü</span> okur.`, `Reads <span class="g">what's on screen</span> like a security guard would.`],
     [`Aşağıdaki görüntü gerçek bir depodan — mal kabul rampası, sabah mesaisi. Kişi kutuları, bölge çizgileri ve olaylar sistemin kendi çıktısıdır.`, `The footage below is from a real warehouse — receiving dock, morning shift. Person boxes, zone lines and events are the system's own output.`],
@@ -89,15 +77,6 @@ window.I18N = (() => {
     [`CAM 2 · Rampa`, `CAM 2 · Dock`], [`CAM 4 · Yükleme`, `CAM 4 · Loading`], [`CAM 7 · Hat başı`, `CAM 7 · Line head`], [`CAM 8 · Ofis girişi`, `CAM 8 · Office entrance`],
     [`kamera bağlı`, `cameras connected`], [`yeni kamera`, `new cameras`],
     // gizlilik
-    [`GİZLİLİK VE KVKK`, `PRIVACY & GDPR`],
-    [`"Kaydın senin <span class="g">binanda işleniyor.</span>"`, `"Your footage is <span class="g">processed in your building."</span>`],
-    [`Kimlik, biyometri ve çalışan performansı hassas alanlardır. n0eyes bunu mimarinin en başına koyar: işleme ve kayıt kutuda yapılır; canlı izleme ve kanıt yalnız yetkili telefona, uçtan uca şifreli gelir.`, `Identity, biometrics and employee performance are sensitive. n0eyes builds that in from the start: processing and storage happen on the box; live view and evidence reach only authorised phones, end-to-end encrypted.`],
-    [`Gerçek isim sisteme hiç girmez. Yüz tanıma yok, duygu tanıma yok.`, `Real names never enter the system. No face recognition, no emotion recognition.`],
-    [`Yemekhane, dinlenme ve sigara alanları analiz kapsamı dışıdır.`, `Canteens, break rooms and smoking areas are out of scope.`],
-    [`Kişi bazlı "verim notu" üretilmez; ölçüm hat ve bölge bazındadır.`, `No per-person "productivity score"; measurement is per line and zone.`],
-    [`Otomatik çıkarımlar karar desteğidir; kritik kararlar insan onayıyla.`, `Automated inferences are decision support; critical decisions require human approval.`],
-    [`Sabah brifi · 07:00`, `Morning brief · 07:00`],
-    [`Gerçek pilot çıktısı — WhatsApp / e-posta ile gelir`, `Real pilot output — delivered via WhatsApp / e-mail`],
     // pilot
     [`PİLOT PLAN`, `PILOT PLAN`],
     [`İlk amaç satmak değil; <span class="muted">kör noktaları görünür kılmak.</span>`, `The first goal isn't to sell; <span class="muted">it's to surface blind spots.</span>`],
