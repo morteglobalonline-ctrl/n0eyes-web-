@@ -74,8 +74,13 @@ Veri: n0eyes deposunda `tools/site_iz_disa.py` (şema v1: `kaynak` · `bolgeler`
 `alarm` (geri_bildirim dogru|normal → Doğru, kisi_yok|yanlis → Yanlış) · `isi` günlük ızgara · opsiyonel `zemin` = çizgi çizimi dosyası, JSON'a göre yol;
 yoksa soyut ızgara). Sahne en-boyu: `zemin` görselinin doğal oranı, yoksa 16:9 (`kaynak.kare` 704×576 alt akış ANAMORFİK, kullanılmaz).
 Komut ve git sürümü JSON'un `kaynak` alanında.
-**`assets/data/fabrika_sentetik.json` SENTETİKTİR** (`kaynak.sentetik: true` → köşe rozeti "SENTETİK ÖRNEK VERİ · YAYIN İÇİN DEĞİL");
-gerçek JSON gelince dosya ve `data-json` değişir. Sayı şeridi yalnız kaynaklı sayılar (K-69, OLCUMLER §102, JSON'un kendisi; kaynak denetimi PR #14 yorumunda).
+**Gerçek veri (8 Eki):** `assets/data/fabrika_nvr2_k17.json` — NVR2_K17 (dokuma/makine koridoru), 7 Eki 15:00–15:15, 43 iz / 2.644 nokta,
+yalnız `insan`, `alarm: null` (sitede olay yok → Doğru/Yanlış balonu hiç açılmaz), `bolgeler` boş. Üretim: n0eyes#80 aracı (`kaynak.git` b766df93),
+kutudan salt-okuma çekilmiş satırlarla; komut `kaynak.komut`'ta. Ana depodaki JSON'a dokunulmadı; yalnız bu kopyaya `"zemin"` eklendi.
+Zemin: `assets/img/fabrika_zemin_nvr2_k17.png` — 640×360 (16:9), şeffaf, tek renk beyaz çizgi; meta veri yok (PNG'de yalnız IHDR/IDAT/IEND);
+OSD saat damgası ve sağ-alt belirsiz şekil silinmiş; fotoğraf ve tanınır insan yok. Rozet sentetik değil ("KAYITTAN · GÖRÜNTÜSÜZ").
+**Yayından önce bir insan (Haqd) içeriğe bakar** (Coordinator kuralı). Görüntü dosyası yalnız bu depoda, n0eyes deposunda değil.
+Sayı şeridi yalnız kaynaklı sayılar (K-69, OLCUMLER §102, JSON'un kendisi; kaynak denetimi PR #14 yorumunda).
 Test kancası: `?ft=412` → o saniyede sabit kare (`prefers-reduced-motion` ile aynı yol: tüm iz yolları soluk, ısı haritası tam).
 
 ## Dil (TR / EN)
