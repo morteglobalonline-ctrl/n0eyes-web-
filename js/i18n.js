@@ -101,7 +101,7 @@ window.I18N = (() => {
     // footer
     [`Şirket`, `Company`], [`Tesis Haritası`, `Facility Map`], [`Pilot Plan`, `Pilot Plan`], [`İletişim`, `Contact`],
     [`Yasal`, `Legal`], [`Sık Sorulan Sorular`, `FAQ`], [`KVKK Aydınlatma Metni`, `Data Protection Notice`], [`Gizlilik Politikası`, `Privacy Policy`], [`Çerez Politikası`, `Cookie Policy`], [`Kullanım Koşulları`, `Terms of Use`],
-    [`YÜZ TANIMA YOK`, `NO FACE RECOGNITION`],
+    [`DUYGU TANIMA YOK`, `NO EMOTION RECOGNITION`],
     [`Mevcut kameralarınızı yapay zekâ ile izleyen bağımsız görüntü analiz katmanı.`, `An independent video-analysis layer that watches your existing cameras with AI.`],
     [`© 2026 n<span class="n0">0</span>eyes. Tüm hakları saklıdır.`, `© 2026 n<span class="n0">0</span>eyes. All rights reserved.`],
   ];
